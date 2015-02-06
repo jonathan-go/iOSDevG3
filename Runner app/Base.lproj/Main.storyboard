@@ -151,7 +151,7 @@
         <!--Active Run-->
         <scene sceneID="1zO-iN-tAc">
             <objects>
-                <viewController title="Active Run" id="eHO-1v-JmZ" sceneMemberID="viewController">
+                <viewController title="Active Run" id="eHO-1v-JmZ" customClass="ActiveRunViewController" customModule="Runner_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1ZB-xS-P6W"/>
                         <viewControllerLayoutGuide type="bottom" id="3uI-mO-oIQ"/>
@@ -169,7 +169,7 @@
                                 </items>
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ug2-jr-KRj">
-                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                <rect key="frame" x="0.0" y="300" width="600" height="251"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QnE-dW-hpj">
                                 <rect key="frame" x="0.0" y="64" width="600" height="236"/>
@@ -182,10 +182,13 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dg-6l-aeW">
-                                        <rect key="frame" x="222" y="162" width="33" height="30"/>
+                                        <rect key="frame" x="234" y="162" width="33" height="30"/>
                                         <state key="normal" title="Start">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="startPauseBtnClick:" destination="eHO-1v-JmZ" eventType="touchUpInside" id="hGW-LC-Jzi"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7X3-vk-E4W">
                                         <rect key="frame" x="206" y="20" width="189" height="65"/>
@@ -197,10 +200,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eI9-xL-lwa">
-                                        <rect key="frame" x="345" y="162" width="33" height="30"/>
+                                        <rect key="frame" x="334" y="162" width="33" height="30"/>
                                         <state key="normal" title="Stop">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="stopBtnClick:" destination="eHO-1v-JmZ" eventType="touchUpInside" id="Kdw-tc-UW4"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqJ-hU-a7S">
                                         <rect key="frame" x="218" y="85" width="164" height="61"/>
@@ -234,8 +240,8 @@
                                     <constraint firstItem="8Op-D4-xv1" firstAttribute="top" secondItem="xqJ-hU-a7S" secondAttribute="bottom" id="7Ze-x6-S2N"/>
                                     <constraint firstItem="8Dg-6l-aeW" firstAttribute="top" secondItem="8Op-D4-xv1" secondAttribute="bottom" constant="15" id="L38-Lw-B1z"/>
                                     <constraint firstAttribute="centerX" secondItem="8Op-D4-xv1" secondAttribute="centerX" id="LcW-ie-cEP"/>
-                                    <constraint firstItem="8Dg-6l-aeW" firstAttribute="trailing" secondItem="QnE-dW-hpj" secondAttribute="centerX" constant="-45" id="P4j-Pg-pZj"/>
-                                    <constraint firstAttribute="centerX" secondItem="eI9-xL-lwa" secondAttribute="leading" constant="-45" id="Rwa-pt-Nlo"/>
+                                    <constraint firstItem="8Dg-6l-aeW" firstAttribute="centerX" secondItem="QnE-dW-hpj" secondAttribute="centerX" constant="-50" id="P4j-Pg-pZj"/>
+                                    <constraint firstAttribute="centerX" secondItem="eI9-xL-lwa" secondAttribute="centerX" constant="-50" id="Rwa-pt-Nlo"/>
                                     <constraint firstItem="7X3-vk-E4W" firstAttribute="top" secondItem="QnE-dW-hpj" secondAttribute="top" constant="20" id="U34-cT-Gal"/>
                                     <constraint firstItem="xqJ-hU-a7S" firstAttribute="top" secondItem="7X3-vk-E4W" secondAttribute="bottom" id="V56-Jb-ycm"/>
                                     <constraint firstAttribute="centerX" secondItem="7X3-vk-E4W" secondAttribute="centerX" id="W0M-BK-dj6"/>
@@ -246,14 +252,14 @@
                                 </constraints>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <include reference="U34-cT-Gal"/>
-                                        <include reference="W0M-BK-dj6"/>
-                                        <include reference="V56-Jb-ycm"/>
-                                        <include reference="atN-xc-oO4"/>
                                         <include reference="7Ze-x6-S2N"/>
                                         <include reference="LcW-ie-cEP"/>
                                         <include reference="fiH-9O-2ha"/>
                                         <include reference="vUD-sL-pRr"/>
+                                        <include reference="U34-cT-Gal"/>
+                                        <include reference="W0M-BK-dj6"/>
+                                        <include reference="V56-Jb-ycm"/>
+                                        <include reference="atN-xc-oO4"/>
                                         <include reference="L38-Lw-B1z"/>
                                         <include reference="P4j-Pg-pZj"/>
                                         <include reference="fkx-jJ-bC1"/>
@@ -307,10 +313,17 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="btnStartPause" destination="8Dg-6l-aeW" id="qyd-hQ-bXc"/>
+                        <outlet property="btnStop" destination="eI9-xL-lwa" id="RM4-LW-fpi"/>
+                        <outlet property="lblDistance" destination="e1J-RQ-ti3" id="bh5-mE-jrl"/>
+                        <outlet property="lblTime" destination="7X3-vk-E4W" id="TqX-Pd-dIB"/>
+                        <outlet property="mapView" destination="ug2-jr-KRj" id="K1t-mL-JF9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxd-5k-Y2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="1066"/>
+            <point key="canvasLocation" x="250" y="1055"/>
         </scene>
         <!--Scedule run-->
         <scene sceneID="OVj-HD-r3C">
@@ -604,11 +617,21 @@
                                     <navigationItem title="Statistics" id="Njb-V2-0I7"/>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfP-Fq-cmi">
+                                <rect key="frame" x="20" y="458" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="eHO-1v-JmZ" kind="show" id="hzZ-wT-zIQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Gpg-6d-fXQ" firstAttribute="top" secondItem="Gn4-W0-PvX" secondAttribute="bottom" id="21r-g2-EHb"/>
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="leading" secondItem="BmY-BZ-v23" secondAttribute="trailing" constant="20" id="4po-Pr-0Wp"/>
+                            <constraint firstItem="BfP-Fq-cmi" firstAttribute="leading" secondItem="d7x-b4-DUc" secondAttribute="leadingMargin" constant="4" id="4vm-WQ-npo"/>
                             <constraint firstAttribute="trailing" secondItem="BmY-BZ-v23" secondAttribute="trailing" constant="20" id="5C5-zt-Ti8"/>
                             <constraint firstItem="kZy-Ko-JAp" firstAttribute="leading" secondItem="v7N-66-7d6" secondAttribute="leading" id="5yX-GS-bAu"/>
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="leading" secondItem="xic-mi-nZq" secondAttribute="trailing" constant="20" id="6gn-mk-vaf"/>
@@ -622,6 +645,7 @@
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="leading" secondItem="Mi7-Cm-t62" secondAttribute="trailing" constant="20" id="LbO-jb-w4h"/>
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="leading" secondItem="aug-YJ-3Tw" secondAttribute="trailing" constant="20" id="NXS-nW-NBL"/>
                             <constraint firstItem="kZy-Ko-JAp" firstAttribute="top" secondItem="Gpg-6d-fXQ" secondAttribute="bottom" constant="30" id="PgU-eE-nur"/>
+                            <constraint firstItem="BfP-Fq-cmi" firstAttribute="top" secondItem="v7N-66-7d6" secondAttribute="bottom" constant="8" id="RAE-kP-4eI"/>
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="top" secondItem="Gpg-6d-fXQ" secondAttribute="bottom" id="USA-VV-voT"/>
                             <constraint firstItem="Gpg-6d-fXQ" firstAttribute="top" secondItem="d7x-b4-DUc" secondAttribute="topMargin" id="VQ0-gN-19L"/>
                             <constraint firstAttribute="centerY" secondItem="oal-Nc-ER3" secondAttribute="bottom" id="WWy-U7-dct"/>
@@ -707,7 +731,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18a-8g-fBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-643" y="1046"/>
+            <point key="canvasLocation" x="-534" y="1055"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
