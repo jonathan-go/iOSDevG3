@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -26,25 +26,31 @@
         <!--Scheduled runs-->
         <scene sceneID="XY3-w3-c7G">
             <objects>
-                <tableViewController id="UdU-tG-CEE" customClass="FirstViewController" customModule="Runner_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Dui-PV-1bG">
+                <tableViewController id="UdU-tG-CEE" customClass="ScheduleRunsViewController" customModule="Runner_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="Dui-PV-1bG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="runCell" textLabel="xmH-Hm-LGs" style="IBUITableViewCellStyleDefault" id="70E-eG-UQ1">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="runCell" rowHeight="60" id="70E-eG-UQ1">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="70E-eG-UQ1" id="0DR-yx-Il8">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xmH-Hm-LGs">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUN-BG-Woq">
+                                            <rect key="frame" x="8" y="30" width="36" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="102" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-yM-ifO">
+                                            <rect key="frame" x="458" y="8" width="111" height="43"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ije-zg-LQ4">
+                                            <rect key="frame" x="8" y="8" width="46" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=compact-widthClass=compact">
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            </variation>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -67,7 +73,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSd-Of-ZT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="-492"/>
+            <point key="canvasLocation" x="288" y="-493"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ryz-hC-lqe">
@@ -146,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1156" y="24"/>
+            <point key="canvasLocation" x="630" y="260"/>
         </scene>
         <!--Active Run-->
         <scene sceneID="1zO-iN-tAc">
@@ -246,14 +252,14 @@
                                 </constraints>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <include reference="U34-cT-Gal"/>
-                                        <include reference="W0M-BK-dj6"/>
-                                        <include reference="V56-Jb-ycm"/>
-                                        <include reference="atN-xc-oO4"/>
                                         <include reference="7Ze-x6-S2N"/>
                                         <include reference="LcW-ie-cEP"/>
                                         <include reference="fiH-9O-2ha"/>
                                         <include reference="vUD-sL-pRr"/>
+                                        <include reference="U34-cT-Gal"/>
+                                        <include reference="W0M-BK-dj6"/>
+                                        <include reference="V56-Jb-ycm"/>
+                                        <include reference="atN-xc-oO4"/>
                                         <include reference="L38-Lw-B1z"/>
                                         <include reference="P4j-Pg-pZj"/>
                                         <include reference="fkx-jJ-bC1"/>
@@ -746,7 +752,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHM-6j-wuC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="260"/>
+            <point key="canvasLocation" x="1405" y="526"/>
         </scene>
     </scenes>
     <resources>

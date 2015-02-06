@@ -7,14 +7,33 @@
 //
 
 import UIKit
+import CoreData
 
-class FirstViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+    var runs = [Run]()
+    
+    
     //Test data
-    let runs = ["New York Marathon - Mon 13th", "Jönköping - Fri 6th", "Världen runt - 2014"]
+    //let runs = ["New York Marathon - Mon 13th", "Jönköping - Fri 6th", "Världen runt - 2014"]
+    
+    //let runs = [ TestRuns(newname: "New York Marathon", newdate: "06-02-2015"), TestRuns(newname: "Vetter rundan", newdate: "12-06-2015")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+//        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+//        let managedContext = appDelegate.managedObjectContext!
+//        let fetchRequest = NSFetchRequest(entityName: "Run")
+//        var error: NSError?
+//        
+//        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
+//        
+//        if let results = fetchedResults{
+//            runs = results
+//        } else{
+//            println("Could not fetch \(error), \(error!.userInfo)")
+//        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,12 +50,16 @@ class FirstViewController: UITableViewController, UIPopoverPresentationControlle
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return runs.count
+        return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("runCell") as UITableViewCell
-        cell.textLabel?.text = runs[indexPath.row]
+        
+//        let run = runs[indexPath.row] as Run
+//        if let namelbl = cell.viewWithTag(100) as? UILabel{
+//            namelbl.text = run.name
+//        }
         return cell
     }
     
