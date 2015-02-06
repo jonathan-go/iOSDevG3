@@ -10,14 +10,15 @@
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="stopDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="toLocation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="run_weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" syncable="YES"/>
+        <relationship name="run_weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="weather_run" inverseEntity="Weather" syncable="YES"/>
     </entity>
     <entity name="Weather" representedClassName="Weather" syncable="YES">
         <attribute name="icon" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="weather_run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="run_weather" inverseEntity="Run" syncable="YES"/>
     </entity>
     <elements>
         <element name="Run" positionX="4039" positionY="1124" width="128" height="193"/>
-        <element name="Weather" positionX="4248" positionY="1287" width="128" height="73"/>
+        <element name="Weather" positionX="4248" positionY="1287" width="128" height="88"/>
     </elements>
 </model>

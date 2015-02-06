@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3AB2BB5A1A84E4B600C5B8F2 /* ActiveRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2BB591A84E4B600C5B8F2 /* ActiveRunViewController.swift */; };
+		3AB2BB5E1A851A3F00C5B8F2 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2BB5D1A851A3F00C5B8F2 /* Weather.m */; };
+		3AB2BB611A851A4000C5B8F2 /* Run.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2BB601A851A4000C5B8F2 /* Run.m */; };
 		3AE84B7C1A7A775B00D9D31A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE84B7B1A7A775B00D9D31A /* AppDelegate.swift */; };
 		3AE84B7E1A7A775B00D9D31A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE84B7D1A7A775B00D9D31A /* FirstViewController.swift */; };
 		3AE84B801A7A775B00D9D31A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE84B7F1A7A775B00D9D31A /* SecondViewController.swift */; };
@@ -32,6 +34,11 @@
 
 /* Begin PBXFileReference section */
 		3AB2BB591A84E4B600C5B8F2 /* ActiveRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRunViewController.swift; sourceTree = "<group>"; };
+		3AB2BB5B1A851A3F00C5B8F2 /* Runner app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner app-Bridging-Header.h"; sourceTree = "<group>"; };
+		3AB2BB5C1A851A3F00C5B8F2 /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
+		3AB2BB5D1A851A3F00C5B8F2 /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
+		3AB2BB5F1A851A4000C5B8F2 /* Run.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Run.h; sourceTree = "<group>"; };
+		3AB2BB601A851A4000C5B8F2 /* Run.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Run.m; sourceTree = "<group>"; };
 		3AE84B761A7A775A00D9D31A /* Runner app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Runner app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE84B7A1A7A775B00D9D31A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AE84B7B1A7A775B00D9D31A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,9 +102,14 @@
 				3AE84B861A7A775B00D9D31A /* LaunchScreen.xib */,
 				3AE84B791A7A775B00D9D31A /* Supporting Files */,
 				3AE84B9D1A7A782800D9D31A /* DataModel.xcdatamodeld */,
+				3AB2BB5F1A851A4000C5B8F2 /* Run.h */,
+				3AB2BB601A851A4000C5B8F2 /* Run.m */,
+				3AB2BB5C1A851A3F00C5B8F2 /* Weather.h */,
+				3AB2BB5D1A851A3F00C5B8F2 /* Weather.m */,
 				79B4B08A1A7BB7A70053B34A /* Run.swift */,
 				79B4B0881A7BB7A60053B34A /* Weather.swift */,
 				3AB2BB591A84E4B600C5B8F2 /* ActiveRunViewController.swift */,
+				3AB2BB5B1A851A3F00C5B8F2 /* Runner app-Bridging-Header.h */,
 			);
 			path = "Runner app";
 			sourceTree = "<group>";
@@ -227,10 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB2BB611A851A4000C5B8F2 /* Run.m in Sources */,
 				3AB2BB5A1A84E4B600C5B8F2 /* ActiveRunViewController.swift in Sources */,
 				3AE84B801A7A775B00D9D31A /* SecondViewController.swift in Sources */,
 				79B4B08B1A7BB7A70053B34A /* Run.swift in Sources */,
 				3AE84B9F1A7A782800D9D31A /* DataModel.xcdatamodeld in Sources */,
+				3AB2BB5E1A851A3F00C5B8F2 /* Weather.m in Sources */,
 				3AE84B7C1A7A775B00D9D31A /* AppDelegate.swift in Sources */,
 				3AE84B7E1A7A775B00D9D31A /* FirstViewController.swift in Sources */,
 				79B4B0891A7BB7A60053B34A /* Weather.swift in Sources */,
@@ -356,9 +370,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Runner app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Runner app/Runner app-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -366,9 +383,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Runner app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Runner app/Runner app-Bridging-Header.h";
 			};
 			name = Release;
 		};
