@@ -2,7 +2,7 @@
 //  Weather.swift
 //  Runner app
 //
-//  Created by Elias Nilsson on 30/01/15.
+//  Created by Jonathan Holm on 12/02/15.
 //  Copyright (c) 2015 iOSGroup3. All rights reserved.
 //
 
@@ -13,5 +13,6 @@ class Weather: NSManagedObject {
 
     @NSManaged var icon: NSData
     @NSManaged var temperature: NSNumber
+    @NSManaged var run: Run
 
 }

@@ -214,7 +214,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ug2-jr-KRj">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ug2-jr-KRj">
                                 <rect key="frame" x="0.0" y="300" width="600" height="251"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QnE-dW-hpj">
@@ -369,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxd-5k-Y2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="250" y="1055"/>
+            <point key="canvasLocation" x="323" y="1046"/>
         </scene>
         <!--Scedule run-->
         <scene sceneID="OVj-HD-r3C">
@@ -663,6 +663,15 @@
                                     <navigationItem title="Statistics" id="Njb-V2-0I7"/>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odg-7x-o2J">
+                                <rect key="frame" x="20" y="458" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="eHO-1v-JmZ" kind="show" id="PKn-Xp-ZWS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -681,6 +690,7 @@
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="leading" secondItem="Mi7-Cm-t62" secondAttribute="trailing" constant="20" id="LbO-jb-w4h"/>
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="leading" secondItem="aug-YJ-3Tw" secondAttribute="trailing" constant="20" id="NXS-nW-NBL"/>
                             <constraint firstItem="kZy-Ko-JAp" firstAttribute="top" secondItem="Gpg-6d-fXQ" secondAttribute="bottom" constant="30" id="PgU-eE-nur"/>
+                            <constraint firstItem="odg-7x-o2J" firstAttribute="top" secondItem="v7N-66-7d6" secondAttribute="bottom" constant="8" id="Rcj-dR-4mw"/>
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="top" secondItem="Gpg-6d-fXQ" secondAttribute="bottom" id="USA-VV-voT"/>
                             <constraint firstItem="Gpg-6d-fXQ" firstAttribute="top" secondItem="d7x-b4-DUc" secondAttribute="topMargin" id="VQ0-gN-19L"/>
                             <constraint firstAttribute="centerY" secondItem="oal-Nc-ER3" secondAttribute="bottom" id="WWy-U7-dct"/>
@@ -700,6 +710,7 @@
                             <constraint firstItem="oal-Nc-ER3" firstAttribute="top" secondItem="Gpg-6d-fXQ" secondAttribute="bottom" id="lzh-YC-Sty"/>
                             <constraint firstItem="ZuB-Iy-eDR" firstAttribute="top" secondItem="kZy-Ko-JAp" secondAttribute="bottom" constant="5" id="oYw-pa-7FJ"/>
                             <constraint firstItem="Jcd-uf-QRv" firstAttribute="top" secondItem="oal-Nc-ER3" secondAttribute="bottom" id="pwz-oE-qxE"/>
+                            <constraint firstItem="odg-7x-o2J" firstAttribute="leading" secondItem="d7x-b4-DUc" secondAttribute="leadingMargin" constant="4" id="rBy-Tf-QnD"/>
                             <constraint firstItem="yya-XU-t8Z" firstAttribute="centerY" secondItem="BmY-BZ-v23" secondAttribute="centerY" id="v2r-q5-spd"/>
                             <constraint firstItem="xic-mi-nZq" firstAttribute="centerY" secondItem="kZy-Ko-JAp" secondAttribute="centerY" id="vaL-PP-FdN"/>
                             <constraint firstItem="bhY-rW-7cm" firstAttribute="centerY" secondItem="dcm-SL-BgX" secondAttribute="centerY" id="whm-Lf-Rga"/>

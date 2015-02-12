@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Run" representedClassName="Run" syncable="YES">
+    <entity name="Run" representedClassName="Runner_app.Run" syncable="YES">
         <attribute name="averageSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="fromLocation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -10,14 +10,15 @@
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="stopDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="toLocation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="run_weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" syncable="YES"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="run" inverseEntity="Weather" syncable="YES"/>
     </entity>
-    <entity name="Weather" representedClassName="Weather" syncable="YES">
+    <entity name="Weather" representedClassName="Runner_app.Weather" syncable="YES">
         <attribute name="icon" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="weather" inverseEntity="Run" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Run" positionX="4039" positionY="1124" width="128" height="193"/>
-        <element name="Weather" positionX="4248" positionY="1287" width="128" height="73"/>
+        <element name="Run" positionX="4003" positionY="1107" width="128" height="193"/>
+        <element name="Weather" positionX="4248" positionY="1287" width="128" height="88"/>
     </elements>
 </model>

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class ActiveRunViewController: UIViewController {
     
@@ -25,9 +26,35 @@ class ActiveRunViewController: UIViewController {
     
     private var running: Bool = false
     
+    lazy var managedObjectContext: NSManagedObjectContext? = {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        if let managedObjectContext = appDelegate.managedObjectContext {
+            return managedObjectContext
+        }
+        else {
+            return nil
+        }
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Test Run
+        let newItem = NSEntityDescription.insertNewObjectForEntityForName("Run", inManagedObjectContext: self.managedObjectContext!) as Run
+        runToShow = newItem
+        
+        runToShow?.name = "Testrun OAOAOA"
+        runToShow?.distance = 12
+        runToShow?.startDate = getDateFromString("2014-02-12 19:00")
+        
+        // Initialize time with values.
+        /*startTime = NSDate.timeIntervalSinceReferenceDate()
+        var startDateSavedTime = NSDate().timeIntervalSinceDate(runToShow!.startDate)
+        savedTime = savedTime + -startDateSavedTime
+        updateTime()*/
+        
+        // MapKit
         let location = CLLocationCoordinate2D(
             latitude: 57.7802479, longitude: 14.161728)
         
@@ -39,6 +66,14 @@ class ActiveRunViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getDateFromString(date: String) -> NSDate {
+        
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let d = dateStringFormatter.dateFromString(date)
+        return NSDate(timeInterval: 0, sinceDate: d!)
     }
     
     /*
