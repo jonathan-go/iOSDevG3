@@ -4,8 +4,10 @@
         <attribute name="averageSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="fromLocation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastResumeDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="route" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="savedTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="stopDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -18,7 +20,7 @@
         <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="weather" inverseEntity="Run" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Run" positionX="4003" positionY="1107" width="128" height="193"/>
+        <element name="Run" positionX="4003" positionY="1107" width="128" height="225"/>
         <element name="Weather" positionX="4248" positionY="1287" width="128" height="88"/>
     </elements>
 </model>
