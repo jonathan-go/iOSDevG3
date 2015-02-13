@@ -70,6 +70,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="eHO-1v-JmZ" kind="show" identifier="ScheduleToActive" id="cbr-QP-IfE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSd-Of-ZT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="630" y="260"/>
+            <point key="canvasLocation" x="782" y="326"/>
         </scene>
         <!--Active Run-->
         <scene sceneID="1zO-iN-tAc">
@@ -425,8 +428,8 @@
                                     </mask>
                                 </variation>
                             </segmentedControl>
-                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ISA-8X-WBp">
-                                <rect key="frame" x="16" y="136" width="320" height="162"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ISA-8X-WBp">
+                                <rect key="frame" x="16" y="136" width="568" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="444317876.28859597">
                                     <!--2015-01-30 13:37:56 +0000-->
                                 </date>
@@ -434,8 +437,8 @@
                                     <rect key="frame" x="16" y="136" width="288" height="162"/>
                                 </variation>
                             </datePicker>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ICi-Tb-OP9">
-                                <rect key="frame" x="0.0" y="19" width="600" height="44"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICi-Tb-OP9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Schedule run" id="Xqj-fg-zmH">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="KWW-AK-6fA"/>
@@ -443,8 +446,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Repeat:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sp-5F-KrS">
-                                <rect key="frame" x="16" y="327" width="64" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sp-5F-KrS">
+                                <rect key="frame" x="16" y="327" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -816,11 +819,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHM-6j-wuC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1405" y="526"/>
+            <point key="canvasLocation" x="1405" y="490"/>
         </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="cbr-QP-IfE"/>
+    </inferredMetricsTieBreakers>
 </document>

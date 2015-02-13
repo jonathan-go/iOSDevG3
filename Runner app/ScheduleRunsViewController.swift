@@ -21,18 +21,18 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-//        let managedContext = appDelegate.managedObjectContext!
-//        let fetchRequest = NSFetchRequest(entityName: "Run")
-//        var error: NSError?
-//        
-//        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
-//        
-//        if let results = fetchedResults{
-//            runs = results
-//        } else{
-//            println("Could not fetch \(error), \(error!.userInfo)")
-//        }
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "Run")
+        var error: NSError?
+        
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
+        
+        if let results = fetchedResults{
+            runs = results
+        } else{
+            println("Could not fetch \(error), \(error!.userInfo)")
+        }
         
     }
 
@@ -50,16 +50,32 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return runs.count
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedRun = runs[indexPath.row]
+        let destinationVC = ActiveRunViewController()
+        destinationVC.runToShow = selectedRun
+        
+        destinationVC.performSegueWithIdentifier("ScheduleToActive", sender: self)
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("runCell") as UITableViewCell
         
-//        let run = runs[indexPath.row] as Run
-//        if let namelbl = cell.viewWithTag(100) as? UILabel{
-//            namelbl.text = run.name
-//        }
+        let run = runs[indexPath.row] as Run
+        if let namelbl = cell.viewWithTag(100) as? UILabel{
+            namelbl.text = run.name
+        }
+        if let datelbl = cell.viewWithTag(101) as? UILabel{
+            var formatter: NSDateFormatter = NSDateFormatter()
+            formatter.dateFormat = "dd-mm-yyyy"
+            let stringDate: String = formatter.stringFromDate(run.startDate)
+            datelbl.text = stringDate
+        }
+        
         return cell
     }
     
