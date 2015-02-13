@@ -73,9 +73,12 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         }
         if let datelbl = cell.viewWithTag(101) as? UILabel{
             var formatter: NSDateFormatter = NSDateFormatter()
-            formatter.dateFormat = "dd-mm-yyyy"
+            formatter.dateFormat = "yyyy-MM-dd"
             let stringDate: String = formatter.stringFromDate(run.startDate)
             datelbl.text = stringDate
+        }
+        if let weatherBox = cell.viewWithTag(102) as? UIImageView{
+            weatherBox.image = UIImage(named: "chance_of_storm")
         }
         
         return cell
