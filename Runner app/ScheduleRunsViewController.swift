@@ -53,12 +53,11 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         return runs.count
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedRun = runs[indexPath.row]
         let destinationVC = ActiveRunViewController()
         destinationVC.runToShow = selectedRun
-        
-        destinationVC.performSegueWithIdentifier("ScheduleToActive", sender: self)
+        self.performSegueWithIdentifier("ScheduleToActive", sender: self)
         
     }
     

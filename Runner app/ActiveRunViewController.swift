@@ -47,19 +47,18 @@ class ActiveRunViewController: UIViewController {
         runToShow?.name = "Testrun OAOAOA"
         runToShow?.distance = 12
         runToShow?.startDate = getDateFromString("2015-02-13 09:00")
-        runToShow?.lastResumeDate = getDateFromString("2015-02-13 09:30")
+        runToShow?.lastResumeDate = getDateFromString("2015-02-13 10:30")
         runToShow?.savedTime = Double(600.0)
         
-        var error: NSError?
-        if runToShow!.managedObjectContext!.save(&error) {
+        /*var error: NSError?
+        if !runToShow!.managedObjectContext!.save(&error) {
             println("Could not save \(error)")
-        }
+        }*/
         
         // Initialize time with values.
         startTime = NSDate.timeIntervalSinceReferenceDate()
         var startDateSavedTime = NSDate().timeIntervalSinceDate(runToShow!.lastResumeDate)
         savedTime = savedTime + startDateSavedTime + runToShow!.savedTime.doubleValue
-        println(startDateSavedTime)
         updateTime()
         
         // MapKit
