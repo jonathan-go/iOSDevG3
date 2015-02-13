@@ -37,22 +37,35 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="70E-eG-UQ1" id="0DR-yx-Il8">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUN-BG-Woq">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUN-BG-Woq">
                                             <rect key="frame" x="8" y="31" width="226" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="102" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-yM-ifO">
-                                            <rect key="frame" x="458" y="9" width="134" height="43"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ije-zg-LQ4">
-                                            <rect key="frame" x="8" y="10" width="442" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ije-zg-LQ4">
+                                            <rect key="frame" x="8" y="13" width="480" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="chance_of_storm" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-yM-ifO">
+                                            <rect key="frame" x="530" y="3" width="62" height="43"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="62" id="nlm-TI-TxQ"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jUN-BG-Woq" firstAttribute="top" secondItem="0DR-yx-Il8" secondAttribute="topMargin" constant="23" id="3Oc-N1-PS4"/>
+                                        <constraint firstItem="ije-zg-LQ4" firstAttribute="top" secondItem="0DR-yx-Il8" secondAttribute="topMargin" constant="5" id="6lt-Na-rOZ"/>
+                                        <constraint firstItem="M1X-yM-ifO" firstAttribute="leading" secondItem="ije-zg-LQ4" secondAttribute="trailing" constant="42" id="AaU-7w-53F"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="M1X-yM-ifO" secondAttribute="bottom" id="CnA-X3-LJ9"/>
+                                        <constraint firstItem="M1X-yM-ifO" firstAttribute="top" secondItem="0DR-yx-Il8" secondAttribute="topMargin" id="DPT-gn-RNH"/>
+                                        <constraint firstItem="ije-zg-LQ4" firstAttribute="leading" secondItem="0DR-yx-Il8" secondAttribute="leadingMargin" id="hyE-wC-E6f"/>
+                                        <constraint firstItem="M1X-yM-ifO" firstAttribute="trailing" secondItem="0DR-yx-Il8" secondAttribute="trailingMargin" id="kRE-3g-0gy"/>
+                                        <constraint firstItem="jUN-BG-Woq" firstAttribute="leading" secondItem="0DR-yx-Il8" secondAttribute="leadingMargin" id="rvD-Jw-Lao"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -76,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSd-Of-ZT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="-497"/>
+            <point key="canvasLocation" x="288" y="-502"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ryz-hC-lqe">
@@ -823,6 +836,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chance_of_storm" width="256" height="256"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
