@@ -41,14 +41,14 @@ class ActiveRunViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Test Run
-        let newItem = NSEntityDescription.insertNewObjectForEntityForName("Run", inManagedObjectContext: self.managedObjectContext!) as Run
+        /*let newItem = NSEntityDescription.insertNewObjectForEntityForName("Run", inManagedObjectContext: self.managedObjectContext!) as Run
         runToShow = newItem
         
         runToShow?.name = "Testrun OAOAOA"
         runToShow?.distance = 12
         runToShow?.startDate = getDateFromString("2015-02-13 09:00")
         runToShow?.lastResumeDate = getDateFromString("2015-02-13 10:30")
-        runToShow?.savedTime = Double(600.0)
+        runToShow?.savedTime = Double(600.0)*/
         
         /*var error: NSError?
         if !runToShow!.managedObjectContext!.save(&error) {
@@ -60,6 +60,10 @@ class ActiveRunViewController: UIViewController {
         var startDateSavedTime = NSDate().timeIntervalSinceDate(runToShow!.lastResumeDate)
         savedTime = savedTime + startDateSavedTime + runToShow!.savedTime.doubleValue
         updateTime()
+        // TODO: change to proper status code
+        if runToShow?.status == 1 {
+            startTimer()
+        }
         
         // MapKit
         let location = CLLocationCoordinate2D(
@@ -117,32 +121,67 @@ class ActiveRunViewController: UIViewController {
     @IBAction func startPauseBtnClick(sender: UIButton) {
         
         if (!running) {
-            // Start
-            btnStartPause.setTitle("Pause", forState: .Normal)
-            running = true
-            
-            let updateSelector: Selector = "updateTime"
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: updateSelector, userInfo: nil, repeats: true)
-            startTime = NSDate.timeIntervalSinceReferenceDate()
-            
+            startTimer()
         } else {
-            // Pause
-            btnStartPause.setTitle("Start", forState: .Normal)
-            running = false
-            
-            timer.invalidate()
-            var currentTime = NSDate.timeIntervalSinceReferenceDate()
-            savedTime = (currentTime - startTime) + savedTime
+            pauseTimer(true)
         }
     }
     
     @IBAction func stopBtnClick(sender: UIButton) {
         
+        stopTimer()
+    }
+    
+    func saveRun() {
+     
+        var error: NSError?
+        if !runToShow!.managedObjectContext!.save(&error) {
+            println("Could not save \(error)")
+        }
+    }
+    
+    func pauseTimer(save: Bool) {
+        
         btnStartPause.setTitle("Start", forState: .Normal)
         running = false
+        
+        timer.invalidate()
+        var currentTime = NSDate.timeIntervalSinceReferenceDate()
+        savedTime = (currentTime - startTime) + savedTime
+        
+        runToShow?.savedTime = savedTime
+        
+        if save {
+            saveRun()
+        }
+    }
+    
+    func startTimer() {
+        
+        btnStartPause.setTitle("Pause", forState: .Normal)
+        running = true
+        
+        let updateSelector: Selector = "updateTime"
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: updateSelector, userInfo: nil, repeats: true)
+        startTime = NSDate.timeIntervalSinceReferenceDate()
+        
+        runToShow?.lastResumeDate = NSDate()
+        saveRun()
+    }
+    
+    func stopTimer() {
+        
+        pauseTimer(false)
         btnStartPause.enabled = false
         btnStop.enabled = false
         
-        timer.invalidate()
+        // TODO: change to proper status
+        runToShow?.status = 2
+        saveRun()
+    }
+    
+    @IBAction func backButtonClick(sender: UIBarButtonItem) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

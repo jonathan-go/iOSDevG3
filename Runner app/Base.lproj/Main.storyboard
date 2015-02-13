@@ -200,7 +200,7 @@
         <!--Active Run-->
         <scene sceneID="1zO-iN-tAc">
             <objects>
-                <viewController title="Active Run" id="eHO-1v-JmZ" customClass="ActiveRunViewController" customModule="Runner_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ActiveRunViewController" title="Active Run" id="eHO-1v-JmZ" customClass="ActiveRunViewController" customModule="Runner_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1ZB-xS-P6W"/>
                         <viewControllerLayoutGuide type="bottom" id="3uI-mO-oIQ"/>
@@ -213,7 +213,11 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Run" id="wUd-B3-DZg">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="ojn-sf-U5w"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="ojn-sf-U5w">
+                                            <connections>
+                                                <action selector="backButtonClick:" destination="eHO-1v-JmZ" id="DLv-cD-RKi"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
