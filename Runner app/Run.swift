@@ -2,7 +2,7 @@
 //  Run.swift
 //  Runner app
 //
-//  Created by Jonathan Holm on 12/02/15.
+//  Created by Jonathan Holm on 13/02/15.
 //  Copyright (c) 2015 iOSGroup3. All rights reserved.
 //
 
@@ -19,7 +19,9 @@ class Run: NSManagedObject {
     @NSManaged var startDate: NSDate
     @NSManaged var status: NSNumber
     @NSManaged var stopDate: NSDate
+    @NSManaged var lastResumeDate: NSDate
     @NSManaged var toLocation: NSNumber
-    @NSManaged var weather: Weather
+    @NSManaged var savedTime: NSNumber
+    @NSManaged var weather: Runner_app.Weather
 
 }
