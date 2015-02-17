@@ -18,6 +18,7 @@ class Run: NSManagedObject {
     @NSManaged var route: NSData
     @NSManaged var startDate: NSDate
     @NSManaged var status: NSNumber
+    @NSManaged var repeatingStatus: NSNumber
     @NSManaged var stopDate: NSDate
     @NSManaged var lastResumeDate: NSDate
     @NSManaged var toLocation: NSNumber

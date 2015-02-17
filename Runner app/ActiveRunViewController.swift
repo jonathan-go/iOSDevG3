@@ -57,13 +57,13 @@ class ActiveRunViewController: UIViewController {
         
         // Initialize time with values.
         startTime = NSDate.timeIntervalSinceReferenceDate()
-        var startDateSavedTime = NSDate().timeIntervalSinceDate(runToShow!.lastResumeDate)
-        savedTime = savedTime + startDateSavedTime + runToShow!.savedTime.doubleValue
-        updateTime()
-        // TODO: change to proper status code
-        if runToShow?.status == 1 {
+        savedTime = savedTime + runToShow!.savedTime.doubleValue
+        if runToShow?.status == RunHelper.Status.Running.rawValue {
+            var startDateSavedTime = NSDate().timeIntervalSinceDate(runToShow!.lastResumeDate)
+            savedTime = savedTime + startDateSavedTime
             startTimer()
         }
+        updateTime()
         
         // MapKit
         let location = CLLocationCoordinate2D(
@@ -102,11 +102,11 @@ class ActiveRunViewController: UIViewController {
         var currentTime = NSDate.timeIntervalSinceReferenceDate()
         var elapsedTime: NSTimeInterval = (currentTime - startTime) + savedTime
         
-        let hours = UInt8(elapsedTime / 3600)
+        let hours = Int32(elapsedTime / 3600)
         elapsedTime = elapsedTime - NSTimeInterval(hours) * 3600
-        let minutes = UInt8(elapsedTime / 60)
+        let minutes = Int32(elapsedTime / 60)
         elapsedTime = elapsedTime - NSTimeInterval(minutes) * 60
-        let seconds = UInt8(elapsedTime)
+        let seconds = Int32(elapsedTime)
         
         let minutesString = minutes <= 9 ? "0" + String(minutes) : String(minutes)
         let secondsString = seconds <= 9 ? "0" + String(seconds) : String(seconds)
@@ -150,6 +150,7 @@ class ActiveRunViewController: UIViewController {
         savedTime = (currentTime - startTime) + savedTime
         
         runToShow?.savedTime = savedTime
+        runToShow?.status = RunHelper.Status.Started.rawValue
         
         if save {
             saveRun()
@@ -166,17 +167,20 @@ class ActiveRunViewController: UIViewController {
         startTime = NSDate.timeIntervalSinceReferenceDate()
         
         runToShow?.lastResumeDate = NSDate()
+        runToShow?.status = RunHelper.Status.Running.rawValue
         saveRun()
     }
     
     func stopTimer() {
         
-        pauseTimer(false)
+        if running {
+            pauseTimer(false)
+        }
         btnStartPause.enabled = false
         btnStop.enabled = false
         
-        // TODO: change to proper status
-        runToShow?.status = 2
+        runToShow?.status = RunHelper.Status.Completed.rawValue
+        RunHelper.CreateRescheduling(runToShow!)
         saveRun()
     }
     
