@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3A095DFE1A8D1A9400414F91 /* ActiveRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A095DFD1A8D1A9400414F91 /* ActiveRunViewController.swift */; };
 		3A095E951A8D350D00414F91 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A095E941A8D350D00414F91 /* Weather.swift */; };
+		3A4395741A939EC4001E8308 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4395731A939EC4001E8308 /* StatisticsViewController.swift */; };
+		3A4395761A93AF3C001E8308 /* RunHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4395751A93AF3C001E8308 /* RunHelper.swift */; };
 		3A92B39A1A8DFE2600F39A05 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A92B3991A8DFE2600F39A05 /* Run.swift */; };
 		3AE84B7C1A7A775B00D9D31A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE84B7B1A7A775B00D9D31A /* AppDelegate.swift */; };
 		3AE84B7E1A7A775B00D9D31A /* ScheduleRunsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE84B7D1A7A775B00D9D31A /* ScheduleRunsViewController.swift */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		3A095DFD1A8D1A9400414F91 /* ActiveRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRunViewController.swift; sourceTree = "<group>"; };
 		3A095E941A8D350D00414F91 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		3A4395731A939EC4001E8308 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		3A4395751A93AF3C001E8308 /* RunHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunHelper.swift; sourceTree = "<group>"; };
 		3A92B3991A8DFE2600F39A05 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		3AE84B761A7A775A00D9D31A /* Runner app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Runner app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE84B7A1A7A775B00D9D31A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				3A095E941A8D350D00414F91 /* Weather.swift */,
 				89473C6D1A84F26000B21063 /* TestRuns.swift */,
 				3A095DFD1A8D1A9400414F91 /* ActiveRunViewController.swift */,
+				3A4395731A939EC4001E8308 /* StatisticsViewController.swift */,
+				3A4395751A93AF3C001E8308 /* RunHelper.swift */,
 			);
 			path = "Runner app";
 			sourceTree = "<group>";
@@ -237,9 +243,11 @@
 				3A095E951A8D350D00414F91 /* Weather.swift in Sources */,
 				3A92B39A1A8DFE2600F39A05 /* Run.swift in Sources */,
 				3A095DFE1A8D1A9400414F91 /* ActiveRunViewController.swift in Sources */,
+				3A4395761A93AF3C001E8308 /* RunHelper.swift in Sources */,
 				3AE84B801A7A775B00D9D31A /* SecondViewController.swift in Sources */,
 				89473C6E1A84F26000B21063 /* TestRuns.swift in Sources */,
 				3AE84B9F1A7A782800D9D31A /* Runner_app.xcdatamodeld in Sources */,
+				3A4395741A939EC4001E8308 /* StatisticsViewController.swift in Sources */,
 				3AE84B7C1A7A775B00D9D31A /* AppDelegate.swift in Sources */,
 				3AE84B7E1A7A775B00D9D31A /* ScheduleRunsViewController.swift in Sources */,
 			);
