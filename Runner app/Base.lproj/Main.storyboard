@@ -604,7 +604,7 @@
         <!--Stats-->
         <scene sceneID="vd8-EB-eOU">
             <objects>
-                <viewController id="Jrs-L0-LsQ" sceneMemberID="viewController">
+                <viewController id="Jrs-L0-LsQ" customClass="StatisticsViewController" customModule="Runner_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gn4-W0-PvX"/>
                         <viewControllerLayoutGuide type="bottom" id="Jcd-uf-QRv"/>
@@ -689,7 +689,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eHO-1v-JmZ" kind="show" id="PKn-Xp-ZWS"/>
+                                    <action selector="CreateTestRuns:" destination="Jrs-L0-LsQ" eventType="touchUpInside" id="B6o-Xc-I8I"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -844,7 +844,4 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="cbr-QP-IfE"/>
-    </inferredMetricsTieBreakers>
 </document>
