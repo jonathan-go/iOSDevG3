@@ -20,32 +20,7 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: "Run")
-        var error: NSError?
-        
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: false)]
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
-        
-        if let results = fetchedResults{
-            unsortedRuns = results
-            for var i = 0; i < unsortedRuns.count; i++
-            {
-                if(unsortedRuns[i].status == RunHelper.Status.Running.rawValue || unsortedRuns[i].status == RunHelper.Status.Started.rawValue){
-                    runs.append(unsortedRuns[i])
-                }
-            }
-            for var i = 0; i < unsortedRuns.count; i++
-            {
-                if(unsortedRuns[i].status != RunHelper.Status.Running.rawValue && unsortedRuns[i].status != RunHelper.Status.Started.rawValue){
-                    runs.append(unsortedRuns[i])
-                }
-            }
-        }
-        else{
-            println("Could not fetch \(error), \(error!.userInfo)")
-        }
+        updateTable()
         
     }
 
@@ -100,6 +75,47 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        updateTable()
+    }
+    
+    func updateTable(){
+        runs.removeAll(keepCapacity: false)
+        unsortedRuns.removeAll(keepCapacity: false)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "Run")
+        var error: NSError?
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: false)]
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
+        
+        if let results = fetchedResults{
+            unsortedRuns = results
+            for var i = 0; i < unsortedRuns.count; i++
+            {
+                if unsortedRuns[i].status != RunHelper.Status.Completed.rawValue
+                {
+                    if(unsortedRuns[i].status == RunHelper.Status.Running.rawValue || unsortedRuns[i].status == RunHelper.Status.Started.rawValue){
+                        runs.append(unsortedRuns[i])
+                    }
+                }
+            }
+            for var i = 0; i < unsortedRuns.count; i++
+            {
+                if unsortedRuns[i].status != RunHelper.Status.Completed.rawValue
+                {
+                    if(unsortedRuns[i].status != RunHelper.Status.Running.rawValue && unsortedRuns[i].status != RunHelper.Status.Started.rawValue){
+                        runs.append(unsortedRuns[i])
+                    }
+                }
+            }
+        }
+    
     }
 
 }

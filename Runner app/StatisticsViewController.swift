@@ -11,16 +11,6 @@ import CoreData
 
 class StatisticsViewController: UIViewController {
     
-    lazy var managedObjectContext: NSManagedObjectContext? = {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        if let managedObjectContext = appDelegate.managedObjectContext {
-            return managedObjectContext
-        }
-        else {
-            return nil
-        }
-    }()
-    
     func getDateFromString(date: String) -> NSDate {
         
         let dateStringFormatter = NSDateFormatter()
@@ -32,16 +22,19 @@ class StatisticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let newItem = NSEntityDescription.insertNewObjectForEntityForName("Run", inManagedObjectContext: self.managedObjectContext!) as Run
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedObjectContext = appDelegate.managedObjectContext
+        let newItem = NSEntityDescription.insertNewObjectForEntityForName("Run", inManagedObjectContext: managedObjectContext!) as Run
         
         newItem.name = "Testrun OAOAOA"
         newItem.distance = 12
         newItem.startDate = getDateFromString("2015-02-17 13:00")
         newItem.lastResumeDate = getDateFromString("2015-02-17 17:00")
         newItem.savedTime = Double(600.0)
+        newItem.status = RunHelper.Status.Scheduled.rawValue
         
         var error: NSError?
-        if !newItem.managedObjectContext!.save(&error) {
+        if !managedObjectContext!.save(&error) {
             println("Could not save \(error)")
         }
     }
