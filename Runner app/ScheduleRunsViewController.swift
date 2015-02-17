@@ -11,8 +11,7 @@ import CoreData
 
 class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     var runs = [Run]()
-    
-    
+    var unsortedRuns = [Run]()
     //Test data
     //let runs = ["New York Marathon - Mon 13th", "Jönköping - Fri 6th", "Världen runt - 2014"]
     
@@ -26,11 +25,25 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         let fetchRequest = NSFetchRequest(entityName: "Run")
         var error: NSError?
         
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: false)]
         let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
         
         if let results = fetchedResults{
-            runs = results
-        } else{
+            unsortedRuns = results
+            for var i = 0; i < unsortedRuns.count; i++
+            {
+                if(unsortedRuns[i].status == RunHelper.Status.Running.rawValue || unsortedRuns[i].status == RunHelper.Status.Started.rawValue){
+                    runs.append(unsortedRuns[i])
+                }
+            }
+            for var i = 0; i < unsortedRuns.count; i++
+            {
+                if(unsortedRuns[i].status != RunHelper.Status.Running.rawValue && unsortedRuns[i].status != RunHelper.Status.Started.rawValue){
+                    runs.append(unsortedRuns[i])
+                }
+            }
+        }
+        else{
             println("Could not fetch \(error), \(error!.userInfo)")
         }
         
@@ -64,6 +77,7 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         self.presentViewController(viewController, animated: true, completion: nil)
     }
     
+    // Assign data to the table cells
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("runCell") as UITableViewCell
         
