@@ -22,6 +22,7 @@
 		89473C6E1A84F26000B21063 /* TestRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89473C6D1A84F26000B21063 /* TestRuns.swift */; };
 		89473CA11A8506B300B21063 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89473CA01A8506B300B21063 /* CoreData.framework */; };
 		899BEEDE1A93BA2E00A93B61 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899BEEDD1A93BA2E00A93B61 /* Run.swift */; };
+		E0369BA71A939EDC008DC689 /* ScheduleARunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0369BA61A939EDC008DC689 /* ScheduleARunViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		89473C6D1A84F26000B21063 /* TestRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRuns.swift; sourceTree = "<group>"; };
 		89473CA01A8506B300B21063 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		899BEEDD1A93BA2E00A93B61 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		E0369BA61A939EDC008DC689 /* ScheduleARunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleARunViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
