@@ -101,6 +101,7 @@
 				3AE84B7D1A7A775B00D9D31A /* ScheduleRunsViewController.swift */,
 				3AE84B7F1A7A775B00D9D31A /* SecondViewController.swift */,
 				3AE84B811A7A775B00D9D31A /* Main.storyboard */,
+				E0369BA61A939EDC008DC689 /* ScheduleARunViewController.swift */,
 				3AE84B841A7A775B00D9D31A /* Images.xcassets */,
 				3AE84B861A7A775B00D9D31A /* LaunchScreen.xib */,
 				3AE84B791A7A775B00D9D31A /* Supporting Files */,
@@ -249,6 +250,7 @@
 				3AE84B9F1A7A782800D9D31A /* Runner_app.xcdatamodeld in Sources */,
 				3A4395741A939EC4001E8308 /* StatisticsViewController.swift in Sources */,
 				3AE84B7C1A7A775B00D9D31A /* AppDelegate.swift in Sources */,
+				E0369BA71A939EDC008DC689 /* ScheduleARunViewController.swift in Sources */,
 				3AE84B7E1A7A775B00D9D31A /* ScheduleRunsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
