@@ -159,8 +159,8 @@
                                     <constraint firstItem="LCw-oG-y94" firstAttribute="centerX" secondItem="vqJ-5U-Fo7" secondAttribute="centerX" id="z3M-4d-oXd"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kWv-uY-2rp">
-                                <rect key="frame" x="0.0" y="71" width="600" height="480"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kWv-uY-2rp">
+                                <rect key="frame" x="5" y="71" width="600" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0Ab-DQ-pzG">
@@ -394,7 +394,7 @@
         <!--Scedule run-->
         <scene sceneID="OVj-HD-r3C">
             <objects>
-                <viewController title="Scedule run" id="ccV-hz-aKq" sceneMemberID="viewController">
+                <viewController title="Scedule run" id="ccV-hz-aKq" customClass="ScheduleARunViewController" customModule="Runner_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z3M-z2-0aa"/>
                         <viewControllerLayoutGuide type="bottom" id="fAC-FL-iiJ"/>
@@ -458,8 +458,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Schedule run" id="Xqj-fg-zmH">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="KWW-AK-6fA"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="1bn-bW-ZWF"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="KWW-AK-6fA">
+                                            <connections>
+                                                <action selector="btn_scheduleARun_cancel:" destination="ccV-hz-aKq" id="ec2-V4-odW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="1bn-bW-ZWF">
+                                            <connections>
+                                                <action selector="btn_scheduleARun_done:" destination="ccV-hz-aKq" id="5aC-J0-c3t"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -596,6 +604,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="ImageView_Map" destination="eAQ-Kk-PqY" id="6sN-a0-CRS"/>
+                        <outlet property="UISegCon_Repeat" destination="3pp-E5-1un" id="WJc-gv-ddc"/>
+                        <outlet property="txtbox_RunName" destination="zrb-dd-nEG" id="vAa-VY-0ey"/>
+                        <outlet property="uiDatePicker_RunDate" destination="ISA-8X-WBp" id="Jlm-as-TPc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHu-0n-nsw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

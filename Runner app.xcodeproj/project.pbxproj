@@ -20,6 +20,7 @@
 		3AE84B9F1A7A782800D9D31A /* Runner_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3AE84B9D1A7A782800D9D31A /* Runner_app.xcdatamodeld */; };
 		89473C6E1A84F26000B21063 /* TestRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89473C6D1A84F26000B21063 /* TestRuns.swift */; };
 		89473CA11A8506B300B21063 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89473CA01A8506B300B21063 /* CoreData.framework */; };
+		E0369BA71A939EDC008DC689 /* ScheduleARunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0369BA61A939EDC008DC689 /* ScheduleARunViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		3AE84B9E1A7A782800D9D31A /* Runner_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Runner_app.xcdatamodel; sourceTree = "<group>"; };
 		89473C6D1A84F26000B21063 /* TestRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRuns.swift; sourceTree = "<group>"; };
 		89473CA01A8506B300B21063 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E0369BA61A939EDC008DC689 /* ScheduleARunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleARunViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				3AE84B7D1A7A775B00D9D31A /* ScheduleRunsViewController.swift */,
 				3AE84B7F1A7A775B00D9D31A /* SecondViewController.swift */,
 				3AE84B811A7A775B00D9D31A /* Main.storyboard */,
+				E0369BA61A939EDC008DC689 /* ScheduleARunViewController.swift */,
 				3AE84B841A7A775B00D9D31A /* Images.xcassets */,
 				3AE84B861A7A775B00D9D31A /* LaunchScreen.xib */,
 				3AE84B791A7A775B00D9D31A /* Supporting Files */,
@@ -241,6 +244,7 @@
 				89473C6E1A84F26000B21063 /* TestRuns.swift in Sources */,
 				3AE84B9F1A7A782800D9D31A /* Runner_app.xcdatamodeld in Sources */,
 				3AE84B7C1A7A775B00D9D31A /* AppDelegate.swift in Sources */,
+				E0369BA71A939EDC008DC689 /* ScheduleARunViewController.swift in Sources */,
 				3AE84B7E1A7A775B00D9D31A /* ScheduleRunsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
