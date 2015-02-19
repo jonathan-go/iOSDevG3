@@ -9,13 +9,9 @@
 import UIKit
 import CoreData
 
-class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationControllerDelegate, ScheduleRunsViewControllerDelegate {
     var runs = [Run]()
-    var unsortedRuns = [Run]()
-    //Test data
-    //let runs = ["New York Marathon - Mon 13th", "Jönköping - Fri 6th", "Världen runt - 2014"]
-    
-    //let runs = [ TestRuns(newname: "New York Marathon", newdate: "06-02-2015"), TestRuns(newname: "Vetter rundan", newdate: "12-06-2015")]
+    //var unsortedRuns = [Run]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +27,10 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addMenuSegue" {
-            let popoverViewController = segue.destinationViewController as UIViewController
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
+            let menuViewController = segue.destinationViewController as MenuViewController
+            menuViewController.delegate = self
+            menuViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+            menuViewController.popoverPresentationController!.delegate = self
         }
     }
     
@@ -77,25 +74,33 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         return UIModalPresentationStyle.None
     }
     
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updateTable()
+         self.tableView.reloadData()
+    }
+    
+    func updateScheduleRunsTable() {
+        updateTable()
+        self.tableView.reloadData()
     }
     
     func updateTable(){
         runs.removeAll(keepCapacity: false)
-        unsortedRuns.removeAll(keepCapacity: false)
+        //unsortedRuns.removeAll(keepCapacity: false)
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName: "Run")
         var error: NSError?
         
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: true)]
         let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
         
         if let results = fetchedResults{
-            unsortedRuns = results
+            var unsortedRuns = results
             for var i = 0; i < unsortedRuns.count; i++
             {
                 if unsortedRuns[i].status != RunHelper.Status.Completed.rawValue

@@ -9,8 +9,13 @@
 import UIKit
 import CoreData
 
+protocol ScheduleRunsViewControllerDelegate{
+    func updateScheduleRunsTable()
+}
 // This class handles the Schedule run view, which is used to schedule a run
 class ScheduleARunViewController: UIViewController {
+    
+    var delegate: ScheduleRunsViewControllerDelegate! = nil
 
     @IBOutlet weak var txtbox_RunName: UITextField!
     
@@ -61,6 +66,8 @@ class ScheduleARunViewController: UIViewController {
             //Save to CoreData
             saveScheduledRunToCoreData(runName, runDate: runDate, runRepeatMode: runRepeatMode)
             self.dismissViewControllerAnimated(true, completion: nil)
+            delegate.updateScheduleRunsTable()
+
         }
         
     }
