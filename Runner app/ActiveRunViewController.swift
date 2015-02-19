@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 
-class ActiveRunViewController: UIViewController {
+class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var lblDistance: UILabel!
@@ -20,11 +20,16 @@ class ActiveRunViewController: UIViewController {
     
     var runToShow: Run?
     
+    var manager:CLLocationManager!
+    var myLocations: [CLLocation] = []
+    
     private var timer = NSTimer()
     private var startTime = NSTimeInterval()
     private var savedTime = NSTimeInterval()
+    private var distance = 0.0
     
     private var running: Bool = false
+    private var pauseLocation: Bool = false
     
     lazy var managedObjectContext: NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -34,7 +39,7 @@ class ActiveRunViewController: UIViewController {
         else {
             return nil
         }
-    }()
+        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +57,19 @@ class ActiveRunViewController: UIViewController {
         
         /*var error: NSError?
         if !runToShow!.managedObjectContext!.save(&error) {
-            println("Could not save \(error)")
+        println("Could not save \(error)")
         }*/
+        
+        manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestAlwaysAuthorization()
+        manager.activityType = .Fitness
+        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        
+        
         
         // Initialize time with values.
         startTime = NSDate.timeIntervalSinceReferenceDate()
@@ -65,13 +81,15 @@ class ActiveRunViewController: UIViewController {
         }
         updateTime()
         
-        // MapKit
-        let location = CLLocationCoordinate2D(
-            latitude: 57.7802479, longitude: 14.161728)
         
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegion(center: location, span: span)
-        mapView.setRegion(region, animated: true)
+        
+        // MapKit
+        //let location = CLLocationCoordinate2D(
+        //  latitude: 57.7802479, longitude: 14.161728)
+        
+        //let span = MKCoordinateSpanMake(0.01, 0.01)
+        //let region = MKCoordinateRegion(center: location, span: span)
+        //mapView.setRegion(region, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,6 +114,70 @@ class ActiveRunViewController: UIViewController {
     // Pass the selected object to the new view controller.
     }
     */
+    
+    func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
+        myLocations.append(locations[0] as CLLocation)
+        
+        let spanX = 0.01
+        let spanY = 0.01
+        var newRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpanMake(spanX, spanY))
+        mapView.setRegion(newRegion, animated: true)
+        
+        if (locations[0].horizontalAccuracy < 20) {
+            if (myLocations.count > 1 && running){
+                if(!pauseLocation){
+                    var sourceIndex = myLocations.count - 1
+                    var destinationIndex = myLocations.count - 2
+                    
+                    let c1 = myLocations[sourceIndex].coordinate
+                    let c2 = myLocations[destinationIndex].coordinate
+                    let distanceChunk: CLLocationDistance = myLocations[sourceIndex].distanceFromLocation(myLocations[destinationIndex])
+                    updateDistance(distanceChunk)
+                    var a = [c1, c2]
+                    var polyline = MKPolyline(coordinates: &a, count: a.count)
+                    mapView.addOverlay(polyline)
+                }
+                else {
+                    pauseLocation = false
+                }
+            }
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if overlay is MKPolyline {
+            var polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.blueColor()
+            polylineRenderer.lineWidth = 4
+            return polylineRenderer
+        }
+        return nil
+    }
+    
+    func updateDistance(dist: CLLocationDistance){
+        distance += dist
+        if (distance < 1000){
+            let distInMeter = String(Int(distance)) + "m"
+            lblDistance.text = distInMeter
+        }
+        else if (distance > 1000){
+            let distInKm = Double(round(1000*distance)/1000)/1000
+            lblDistance.text = String(format: "%.2f",distInKm) + "km"
+        }
+    }
+    
+    
+    func startMap() {
+        manager.startUpdatingLocation()
+    }
+    func pauseMap(){
+        manager.stopUpdatingLocation()
+        pauseLocation = true
+    }
+    func stopMap() {
+        manager.stopUpdatingLocation()
+    }
+    
     
     func updateTime() {
         
@@ -122,23 +204,27 @@ class ActiveRunViewController: UIViewController {
         
         if (!running) {
             startTimer()
+            startMap()
         } else {
+            pauseMap()
             pauseTimer(true)
         }
     }
     
     @IBAction func stopBtnClick(sender: UIButton) {
-        
         stopTimer()
+        stopMap()
     }
     
     func saveRun() {
-     
+        
         var error: NSError?
         if !runToShow!.managedObjectContext!.save(&error) {
             println("Could not save \(error)")
         }
     }
+    
+    
     
     func pauseTimer(save: Bool) {
         
@@ -151,6 +237,7 @@ class ActiveRunViewController: UIViewController {
         
         runToShow?.savedTime = savedTime
         runToShow?.status = RunHelper.Status.Started.rawValue
+        
         
         if save {
             saveRun()
@@ -184,8 +271,9 @@ class ActiveRunViewController: UIViewController {
         saveRun()
     }
     
+    
+    
     @IBAction func backButtonClick(sender: UIBarButtonItem) {
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
