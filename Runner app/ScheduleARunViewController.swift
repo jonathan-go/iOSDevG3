@@ -18,11 +18,8 @@ class ScheduleARunViewController: UIViewController {
     var delegate: ScheduleRunsViewControllerDelegate! = nil
 
     @IBOutlet weak var txtbox_RunName: UITextField!
-    
     @IBOutlet weak var uiDatePicker_RunDate: UIDatePicker!
-    
     @IBOutlet weak var UISegCon_Repeat: UISegmentedControl!
-    
     @IBOutlet weak var ImageView_Map: UIImageView!
     
     override func viewDidLoad() {
@@ -54,12 +51,12 @@ class ScheduleARunViewController: UIViewController {
         if( runName == nil || runName == "")
         {
             //User didnt name run
-            //TODO - Notify user somehow
+            createErrorMessage("Name is needed", alertMessage: "Scheduled run is unnamed")
         }
         else if( runDate.compare(currentDate) == NSComparisonResult.OrderedAscending)
         {
-            //User Tries to schedule run before current date
-            //TODO - Notify user somehow
+            //User tried to set scheduled date before current date
+            createErrorMessage("Invalid Date", alertMessage: "Run is scheduled before current date")
         }
         else
         {
@@ -67,29 +64,54 @@ class ScheduleARunViewController: UIViewController {
             saveScheduledRunToCoreData(runName, runDate: runDate, runRepeatMode: runRepeatMode)
             self.dismissViewControllerAnimated(true, completion: nil)
             delegate.updateScheduleRunsTable()
-
         }
         
     }
     
     //Saves the schedule to CoreData
-    func saveScheduledRunToCoreData(runName: String, runDate: NSDate, runRepeatMode: Int)
-    {
+    func saveScheduledRunToCoreData(runName: String, runDate: NSDate, runRepeatMode: Int){
+        
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let entity = NSEntityDescription.entityForName("Run", inManagedObjectContext: managedContext)
         let run = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as Run
+
+        if(runRepeatMode == 0){
+            run.repeatingStatus = RunHelper.RepeatingStatus.None.rawValue
+        }
+        else if(runRepeatMode == 1){
+            run.repeatingStatus = RunHelper.RepeatingStatus.Daily.rawValue
+        }
+        else if(runRepeatMode == 2){
+            run.repeatingStatus = RunHelper.RepeatingStatus.Weekly.rawValue
+        }
+        else if(runRepeatMode == 3){
+            run.repeatingStatus = RunHelper.RepeatingStatus.Monthly.rawValue
+        }
+        else {
+            assert(false, "repeating status code is invalid. Terminating in 3...2...1")
+        }
+        
         run.name = runName
         run.startDate = runDate
-        run.status = 0
+        run.status = RunHelper.Status.Scheduled.rawValue
         
         var error: NSError?
         if !managedContext.save(&error) {
-            println("Something Happen")
+            println("Could not save/schedule run")
         }
     }
-    
 
+    
+    //Creates a popup with the desired tilte and message
+    func createErrorMessage(alertTitle: String,alertMessage: String){
+        
+        var alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
