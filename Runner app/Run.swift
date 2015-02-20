@@ -23,6 +23,6 @@ class Run: NSManagedObject {
     @NSManaged var lastResumeDate: NSDate
     @NSManaged var toLocation: NSNumber
     @NSManaged var savedTime: NSNumber
-    @NSManaged var weather: Runner_app.Weather
+    @NSManaged var weather: String
 
 }
