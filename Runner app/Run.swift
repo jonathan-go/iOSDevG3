@@ -24,5 +24,6 @@ class Run: NSManagedObject {
     @NSManaged var toLocation: NSNumber
     @NSManaged var savedTime: NSNumber
     @NSManaged var weather: Runner_app.Weather
+    @NSManaged var locations: NSSet
 
 }
