@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Location" representedClassName="Runner_app.Location" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="locations" inverseEntity="Run" syncable="YES"/>
+    </entity>
     <entity name="Run" representedClassName="Runner_app.Run" syncable="YES">
         <attribute name="averageSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -13,15 +19,11 @@
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="stopDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="toLocation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="run" inverseEntity="Weather" syncable="YES"/>
-    </entity>
-    <entity name="Weather" representedClassName="Runner_app.Weather" syncable="YES">
-        <attribute name="icon" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="temperature" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="weather" inverseEntity="Run" syncable="YES"/>
+        <attribute name="weather" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="run" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Run" positionX="4003" positionY="1107" width="128" height="240"/>
-        <element name="Weather" positionX="4248" positionY="1287" width="128" height="88"/>
+        <element name="Location" positionX="4185" positionY="1122" width="128" height="103"/>
+        <element name="Run" positionX="4003" positionY="1107" width="128" height="255"/>
     </elements>
 </model>

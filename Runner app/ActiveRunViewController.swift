@@ -43,22 +43,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        // Test Run
-        /*let newItem = NSEntityDescription.insertNewObjectForEntityForName("Run", inManagedObjectContext: self.managedObjectContext!) as Run
-        runToShow = newItem
-        
-        runToShow?.name = "Testrun OAOAOA"
-        runToShow?.distance = 12
-        runToShow?.startDate = getDateFromString("2015-02-13 09:00")
-        runToShow?.lastResumeDate = getDateFromString("2015-02-13 10:30")
-        runToShow?.savedTime = Double(600.0)*/
-        
-        /*var error: NSError?
-        if !runToShow!.managedObjectContext!.save(&error) {
-        println("Could not save \(error)")
-        }*/
+        // Do any additional setup after loading the view
         
         manager = CLLocationManager()
         manager.delegate = self
@@ -81,15 +66,6 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
         updateTime()
         
-        
-        
-        // MapKit
-        //let location = CLLocationCoordinate2D(
-        //  latitude: 57.7802479, longitude: 14.161728)
-        
-        //let span = MKCoordinateSpanMake(0.01, 0.01)
-        //let region = MKCoordinateRegion(center: location, span: span)
-        //mapView.setRegion(region, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -105,16 +81,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         return NSDate(timeInterval: 0, sinceDate: d!)
     }
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
+      
+    //Fires when location is updated and appends them to an array of locations
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
         myLocations.append(locations[0] as CLLocation)
         
@@ -144,6 +112,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
     }
     
+    //Draws a polyline to display the route
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if overlay is MKPolyline {
             var polylineRenderer = MKPolylineRenderer(overlay: overlay)
@@ -154,15 +123,24 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         return nil
     }
     
+    //Updates the total distance
     func updateDistance(dist: CLLocationDistance){
         distance += dist
         if (distance < 1000){
-            let distInMeter = String(Int(distance)) + "m"
-            lblDistance.text = distInMeter
+            updateDistanceLabel(distance, meter: true)
         }
         else if (distance > 1000){
-            let distInKm = Double(round(1000*distance)/1000)/1000
-            lblDistance.text = String(format: "%.2f",distInKm) + "km"
+            updateDistanceLabel(distance, meter: false)
+        }
+    }
+    
+    //Displays the distance, format depends on whether the distance is more or less than a km
+    func updateDistanceLabel(dist: Double, meter: Bool) {
+        if(meter){
+            lblDistance.text = String(Int(dist)) + "m"
+        }
+        else {
+            lblDistance.text = String(format: "%.2f", dist/1000) + "km"
         }
     }
     
@@ -174,8 +152,52 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         manager.stopUpdatingLocation()
         pauseLocation = true
     }
+    
+    //Stops the tracking
     func stopMap() {
         manager.stopUpdatingLocation()
+        
+        
+        //Will zoom the map to fit the route
+        var zoomRect: MKMapRect = MKMapRectNull
+        
+        for location in myLocations {
+            let locPoint: MKMapPoint = MKMapPointForCoordinate(location.coordinate)
+            let locRect: MKMapRect = MKMapRectMake(locPoint.x, locPoint.y, 0, 0)
+            
+            if (MKMapRectIsNull(zoomRect)) {
+                zoomRect = locRect
+            }
+            else {
+                zoomRect = MKMapRectUnion(zoomRect, locRect)
+            }
+        }
+        
+        mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+        
+        saveRoute()
+    }
+    
+    func saveRoute(){
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        var locArr: NSMutableArray = []
+        for location in myLocations{
+            let entity = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedContext)
+            let locationObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as Location
+            
+            locationObject.latitude = location.coordinate.latitude
+            locationObject.longitude = location.coordinate.longitude
+            locationObject.timestamp = location.timestamp
+            locArr.addObject(locationObject)
+        }
+        
+        runToShow?.distance = distance
+        let set = NSSet(array: locArr)
+        runToShow?.locations = set
+        
+        saveRun()
     }
     
     
@@ -277,4 +299,60 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @IBAction func backButtonClick(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
+    
+    
+    
+    
+    //%%%%%%%%%%%%%%%%SKA VARA I COMPLETED RUNS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    //Loads the coordinates and draws the route on the map
+    func loadRoute() {
+        var descriptor: NSSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
+        let array = runToShow!.locations.sortedArrayUsingDescriptors([descriptor])
+        
+        if (array.count > 0) {
+            var coordArr: [CLLocationCoordinate2D] = []
+            
+            for location in array {
+                let loc = location as Location
+                let lat = Double(loc.latitude)
+                let long = Double(loc.longitude)
+                let coord = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                coordArr.append(coord)
+            }
+            
+            var zoomRect: MKMapRect = MKMapRectNull
+            
+            for index in 0...coordArr.count-1 {
+                var i = coordArr.count-1 - index
+                
+                if(i > 0){
+                    let c1 = coordArr[i]
+                    let c2 = coordArr[i-1]
+                    var a = [c1, c2]
+                    var polyline = MKPolyline(coordinates: &a, count: a.count)
+                    mapView.addOverlay(polyline)
+                }
+                
+                
+                
+                let locPoint: MKMapPoint = MKMapPointForCoordinate(coordArr[i])
+                let locRect: MKMapRect = MKMapRectMake(locPoint.x, locPoint.y, 0, 0)
+                
+                if (MKMapRectIsNull(zoomRect)) {
+                    zoomRect = locRect
+                }
+                else {
+                    zoomRect = MKMapRectUnion(zoomRect, locRect)
+                }
+            }
+            
+            mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+        }
+        
+    }
+
 }
