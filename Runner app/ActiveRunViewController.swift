@@ -80,16 +80,6 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
             startTimer()
         }
         updateTime()
-        
-        
-        
-        // MapKit
-        //let location = CLLocationCoordinate2D(
-        //  latitude: 57.7802479, longitude: 14.161728)
-        
-        //let span = MKCoordinateSpanMake(0.01, 0.01)
-        //let region = MKCoordinateRegion(center: location, span: span)
-        //mapView.setRegion(region, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -105,16 +95,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         return NSDate(timeInterval: 0, sinceDate: d!)
     }
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
+      
+    //Fires when location is updated and appends them to an array of locations
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
         myLocations.append(locations[0] as CLLocation)
         
@@ -144,6 +126,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
     }
     
+    //Draws a polyline to display the route
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if overlay is MKPolyline {
             var polylineRenderer = MKPolylineRenderer(overlay: overlay)
@@ -154,6 +137,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         return nil
     }
     
+    //Updates the total distance and displays it
     func updateDistance(dist: CLLocationDistance){
         distance += dist
         if (distance < 1000){
@@ -161,7 +145,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
             lblDistance.text = distInMeter
         }
         else if (distance > 1000){
-            let distInKm = Double(round(1000*distance)/1000)/1000
+            let distInKm = distance/1000
             lblDistance.text = String(format: "%.2f",distInKm) + "km"
         }
     }
@@ -174,8 +158,28 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         manager.stopUpdatingLocation()
         pauseLocation = true
     }
+    
+    //Stops the tracking
     func stopMap() {
         manager.stopUpdatingLocation()
+        
+        
+        //Will zoom the map to fit the route
+        var zoomRect: MKMapRect = MKMapRectNull
+        
+        for location in myLocations {
+            let locPoint: MKMapPoint = MKMapPointForCoordinate(location.coordinate)
+            let locRect: MKMapRect = MKMapRectMake(locPoint.x, locPoint.y, 0, 0)
+            
+            if (MKMapRectIsNull(zoomRect)) {
+                zoomRect = locRect
+            }
+            else {
+                zoomRect = MKMapRectUnion(zoomRect, locRect)
+            }
+        }
+        
+        mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
     }
     
     
