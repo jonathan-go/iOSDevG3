@@ -253,6 +253,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: updateSelector, userInfo: nil, repeats: true)
         startTime = NSDate.timeIntervalSinceReferenceDate()
         
+        runToShow?.savedTime = savedTime
         runToShow?.lastResumeDate = NSDate()
         runToShow?.status = RunHelper.Status.Running.rawValue
         saveRun()

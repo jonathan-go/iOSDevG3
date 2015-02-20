@@ -56,5 +56,7 @@ class StatisticsViewController: UIViewController {
         if !managedObjectContext!.save(&error) {
             println("Could not save \(error)")
         }
+        
+        NotificationManager.onApplicationExit()
     }
 }
