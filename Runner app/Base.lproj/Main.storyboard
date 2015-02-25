@@ -49,7 +49,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chance_of_storm" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-yM-ifO">
+                                        <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01d" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-yM-ifO">
                                             <rect key="frame" x="530" y="8" width="62" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="62" id="nlm-TI-TxQ"/>
@@ -167,19 +167,13 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Distance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0d-AP-cRi">
-                                            <rect key="frame" x="120" y="30" width="72" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0d-AP-cRi">
+                                            <rect key="frame" x="114" y="35" width="65" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10 km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pve-w2-DQj">
-                                            <rect key="frame" x="194" y="30" width="48" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="chance_of_storm" translatesAutoresizingMaskIntoConstraints="NO" id="V4C-SV-Zlv">
+                                        <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="10d" translatesAutoresizingMaskIntoConstraints="NO" id="V4C-SV-Zlv">
                                             <rect key="frame" x="531" y="8" width="61" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="8Wg-ID-v2Y"/>
@@ -191,19 +185,25 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pve-w2-DQj">
+                                            <rect key="frame" x="187" y="35" width="43" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="h0d-AP-cRi" firstAttribute="leading" secondItem="cT3-rC-tVR" secondAttribute="trailing" constant="80" id="CGg-Hg-lTQ"/>
+                                        <constraint firstItem="h0d-AP-cRi" firstAttribute="leading" secondItem="cT3-rC-tVR" secondAttribute="trailing" constant="74" id="59w-fI-4Rw"/>
+                                        <constraint firstItem="pve-w2-DQj" firstAttribute="leading" secondItem="h0d-AP-cRi" secondAttribute="trailing" constant="8" id="9rb-vF-IGi"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="V4C-SV-Zlv" secondAttribute="bottom" id="FPc-2J-xMw"/>
+                                        <constraint firstItem="pve-w2-DQj" firstAttribute="top" secondItem="eRA-Q7-i1F" secondAttribute="topMargin" constant="27" id="J6P-zm-bBf"/>
                                         <constraint firstItem="V4C-SV-Zlv" firstAttribute="trailing" secondItem="eRA-Q7-i1F" secondAttribute="trailingMargin" id="OA5-T0-c8K"/>
-                                        <constraint firstItem="pve-w2-DQj" firstAttribute="top" secondItem="eRA-Q7-i1F" secondAttribute="topMargin" constant="22" id="Uan-mJ-bla"/>
                                         <constraint firstItem="V4C-SV-Zlv" firstAttribute="top" secondItem="eRA-Q7-i1F" secondAttribute="topMargin" id="YQ5-4e-8nW"/>
-                                        <constraint firstItem="h0d-AP-cRi" firstAttribute="top" secondItem="eRA-Q7-i1F" secondAttribute="topMargin" constant="22" id="ce4-Nx-685"/>
                                         <constraint firstItem="T5N-5e-0Rx" firstAttribute="top" secondItem="eRA-Q7-i1F" secondAttribute="topMargin" constant="1" id="hnK-12-DSJ"/>
                                         <constraint firstItem="T5N-5e-0Rx" firstAttribute="leading" secondItem="eRA-Q7-i1F" secondAttribute="leadingMargin" id="ikQ-k1-kxP"/>
+                                        <constraint firstItem="h0d-AP-cRi" firstAttribute="top" secondItem="T5N-5e-0Rx" secondAttribute="bottom" constant="5" id="qVr-QP-qpB"/>
                                         <constraint firstItem="cT3-rC-tVR" firstAttribute="top" secondItem="T5N-5e-0Rx" secondAttribute="bottom" constant="5" id="yVp-Pu-cnj"/>
                                         <constraint firstItem="cT3-rC-tVR" firstAttribute="leading" secondItem="eRA-Q7-i1F" secondAttribute="leadingMargin" id="zNF-kS-UW7"/>
-                                        <constraint firstItem="pve-w2-DQj" firstAttribute="leading" secondItem="h0d-AP-cRi" secondAttribute="trailing" constant="2" id="zjh-G3-gaY"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -907,7 +907,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chance_of_storm" width="256" height="256"/>
+        <image name="01d" width="50" height="50"/>
+        <image name="10d" width="50" height="50"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>

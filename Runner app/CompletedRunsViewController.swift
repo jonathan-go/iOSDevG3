@@ -56,7 +56,9 @@ class CompletedRunsViewController: UITableViewController {
             distancelbl.text = run.distance.stringValue + " km"
         }
         if let weatherBox = cell.viewWithTag(103) as? UIImageView{
-            weatherBox.image = UIImage(named: "chance_of_storm")
+            //weatherBox.image = UIImage(named: "chance_of_storm")
+            var image = WeatherHelper.getWeatherImage("02d")
+            weatherBox.image = image
         }
         
         return cell
