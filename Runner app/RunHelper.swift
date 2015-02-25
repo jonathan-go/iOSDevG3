@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 class RunHelper {
     
@@ -20,6 +22,32 @@ class RunHelper {
     
     class func CreateRescheduling(completedRun: Run) {
         
-        //TODO: Create schedule run if the incoming run has RepeatingStatus != None.
+        // Create schedule run if the incoming run has RepeatingStatus != None.
+        if completedRun.repeatingStatus == RepeatingStatus.None.rawValue {
+            return
+        }
+        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let context = delegate.managedObjectContext
+        var newRun = NSEntityDescription.insertNewObjectForEntityForName("Run", inManagedObjectContext: context!) as Run
+        
+        newRun.name = completedRun.name
+        newRun.status = Status.Scheduled.rawValue
+        newRun.repeatingStatus = completedRun.repeatingStatus
+        
+        var components = NSDateComponents()
+        if completedRun.repeatingStatus == RepeatingStatus.Daily.rawValue {
+            components.day = 1
+        } else if completedRun.repeatingStatus == RepeatingStatus.Weekly.rawValue {
+            components.day = 7
+        } else { // Monthly
+            components.month = 1
+        }
+        
+        newRun.startDate = NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: completedRun.startDate, options: NSCalendarOptions(0))!
+        
+        var error: NSError?
+        if !context!.save(&error) {
+            println("Could not save \(error)")
+        }
     }
 }
