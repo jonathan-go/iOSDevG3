@@ -37,17 +37,21 @@ class NotificationManager {
             if runs.count > 0 {
                 let notRun = runs[0]
                 
-                println(notRun.startDate)
                 var notification = UILocalNotification()
                 
-                let calendar = NSCalendar()
                 var offsetComponents = NSDateComponents()
                 offsetComponents.minute = -15
-                let notificationDate = calendar.dateByAddingComponents(offsetComponents, toDate: notRun.startDate, options: nil)
+                let minutesToStartDate = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMinute, fromDate: currentDate, toDate: notRun.startDate, options: NSCalendarOptions(0))
+                let notificationDate = NSCalendar.currentCalendar().dateByAddingComponents(offsetComponents, toDate: notRun.startDate, options: NSCalendarOptions(0))
+                println(minutesToStartDate)
                 
-                notification.alertAction = "You have a scheduled run in 15 min!"
-                notification.alertBody = "The weather is nice, I promise!"
-                notification.fireDate = NSDate(timeIntervalSinceNow: 10)
+                notification.alertAction = "Scheduled run"
+                if minutesToStartDate.minute < 15 {
+                    notification.alertBody = "You have a run scheduled to start in \(minutesToStartDate.minute) minutes!"
+                } else {
+                    notification.alertBody = "You have a run scheduled to start in 15 minutes!"
+                }
+                notification.fireDate = notificationDate
                 appReference.scheduleLocalNotification(notification)
             }
         }
