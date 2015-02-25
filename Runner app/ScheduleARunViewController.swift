@@ -8,14 +8,17 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 protocol ScheduleRunsViewControllerDelegate{
     func updateScheduleRunsTable()
 }
 // This class handles the Schedule run view, which is used to schedule a run
-class ScheduleARunViewController: UIViewController {
+class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate{
     
     var delegate: ScheduleRunsViewControllerDelegate! = nil
+    var locationManager = CLLocationManager()
+    var currentlocation = ""
 
     @IBOutlet weak var txtbox_RunName: UITextField!
     @IBOutlet weak var uiDatePicker_RunDate: UIDatePicker!
@@ -24,8 +27,11 @@ class ScheduleARunViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,6 +115,13 @@ class ScheduleARunViewController: UIViewController {
         var alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        locationManager.stopUpdatingLocation()
+        println(locationManager.location.coordinate.latitude.description)
+        println(locationManager.location.coordinate.longitude.description)
+        
     }
     
     

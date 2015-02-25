@@ -32,6 +32,7 @@ class MenuViewController: UIViewController, ScheduleRunsViewControllerDelegate {
     }
     
     func updateScheduleRunsTable() {
+        self.dismissViewControllerAnimated(false, completion: nil)
         delegate.updateScheduleRunsTable()
     }
     

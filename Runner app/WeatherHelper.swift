@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class WeatherHelper {
     
@@ -22,10 +23,11 @@ class WeatherHelper {
         return image
     }
     
-    class func getImagecodeFromApi(requestedDate: NSDate) -> String {
+    class func getImagecodeFromApi(requestedDate: NSDate, location: String) -> String {
         let todaysDate = NSDate()
         let daysBetween = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: todaysDate, toDate: requestedDate, options: NSCalendarOptions(0))
-        //daysBetween.day dagar emellan 
+        //daysBetween.day dagar emellan
         return ""
     }
+    
 }
