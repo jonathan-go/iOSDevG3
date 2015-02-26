@@ -36,7 +36,7 @@ class MenuViewController: UIViewController, ScheduleRunsViewControllerDelegate {
             
             run.name = "Quickstart " + timeAsString.substringToIndex(advance(timeAsString.startIndex, substringIndex))
             run.startDate = NSDate()
-            run.status = RunHelper.Status.Started.rawValue
+            run.status = RunHelper.Status.Scheduled.rawValue
             run.repeatingStatus = RunHelper.RepeatingStatus.None.rawValue
             
             var error: NSError?
@@ -47,6 +47,7 @@ class MenuViewController: UIViewController, ScheduleRunsViewControllerDelegate {
             //Sends Objet to ActiveRun
             let popup = segue.destinationViewController as ActiveRunViewController
             popup.runToShow = run
+            popup.delegate = delegate
         
         }
         else{
