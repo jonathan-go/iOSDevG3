@@ -68,7 +68,10 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
             startTimer()
         }
         updateTime()
-                
+        
+        if(delegate != nil){
+            delegate.updateScheduleRunsTable()
+        }
     }
     
     override func didReceiveMemoryWarning() {
