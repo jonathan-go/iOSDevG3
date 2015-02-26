@@ -13,17 +13,37 @@ import CoreLocation
 protocol ScheduleRunsViewControllerDelegate{
     func updateScheduleRunsTable()
 }
+
 // This class handles the Schedule run view, which is used to schedule a run
-class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate{
+class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, ScheduleArunDelegate{
     
     var delegate: ScheduleRunsViewControllerDelegate! = nil
     var locationManager = CLLocationManager()
-    var currentlocation = ""
+    var longitude = ""
+    var latitude = ""
+    var date = NSDate()
 
     @IBOutlet weak var txtbox_RunName: UITextField!
     @IBOutlet weak var uiDatePicker_RunDate: UIDatePicker!
     @IBOutlet weak var UISegCon_Repeat: UISegmentedControl!
     @IBOutlet weak var ImageView_Map: UIImageView!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBAction func dateChanged(sender: AnyObject) {
+        var imagecode = ""
+        date = datePicker.date
+        if longitude != "" && latitude != ""{
+            WeatherHelper.getImagecodeFromApi(date, longitude: longitude, latitude: latitude, delegate: self)
+        }
+    }
+    
+    func updateWeatherImage(imagecode: String) {
+        println(imagecode)
+        let image = WeatherHelper.getWeatherImage(imagecode)
+        println(image)
+        ImageView_Map.image = WeatherHelper.getWeatherImage(imagecode)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,11 +139,11 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate{
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         locationManager.stopUpdatingLocation()
-        println(locationManager.location.coordinate.latitude.description)
-        println(locationManager.location.coordinate.longitude.description)
+        longitude = locationManager.location.coordinate.longitude.description
+        latitude = locationManager.location.coordinate.latitude.description
         
     }
-    
+
     
     /*
     // MARK: - Navigation
