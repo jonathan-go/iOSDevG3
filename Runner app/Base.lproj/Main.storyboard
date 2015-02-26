@@ -243,32 +243,19 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ug2-jr-KRj">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ug2-jr-KRj">
                                 <rect key="frame" x="0.0" y="300" width="600" height="251"/>
                             </mapView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QnE-dW-hpj">
                                 <rect key="frame" x="0.0" y="64" width="600" height="236"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Op-D4-xv1">
-                                        <rect key="frame" x="20" y="146" width="560" height="1"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="20" y="151" width="560" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="cgI-Hh-YZJ"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dg-6l-aeW">
-                                        <rect key="frame" x="234" y="162" width="33" height="30"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" title="Start">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="136" y="162" width="30" height="30"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="startPauseBtnClick:" destination="eHO-1v-JmZ" eventType="touchUpInside" id="hGW-LC-Jzi"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7X3-vk-E4W">
                                         <rect key="frame" x="206" y="20" width="189" height="65"/>
                                         <constraints>
@@ -277,16 +264,22 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="70"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="13" y="20" width="176" height="65"/>
+                                        </variation>
                                         <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="113" y="20" width="176" height="65"/>
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eI9-xL-lwa">
-                                        <rect key="frame" x="334" y="162" width="33" height="30"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                                        <rect key="frame" x="334" y="162" width="40" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                                         <state key="normal" title="Stop">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="136" y="162" width="30" height="30"/>
+                                        </variation>
                                         <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="236" y="162" width="30" height="30"/>
                                         </variation>
@@ -309,21 +302,53 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pace:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaT-87-GHq">
+                                                <rect key="frame" x="0.0" y="40" width="72" height="21"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 min/km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pK9-h3-ewU">
+                                                <rect key="frame" x="97" y="40" width="67" height="21"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="pK9-h3-ewU" secondAttribute="trailing" id="18A-id-E52"/>
+                                            <constraint firstItem="IaT-87-GHq" firstAttribute="leading" secondItem="xqJ-hU-a7S" secondAttribute="leading" id="6cR-ll-p6Q"/>
                                             <constraint firstAttribute="trailing" secondItem="e1J-RQ-ti3" secondAttribute="trailing" id="6xG-NW-5Iz"/>
+                                            <constraint firstItem="IaT-87-GHq" firstAttribute="top" secondItem="2b2-rL-NXJ" secondAttribute="bottom" constant="-1" id="B5Y-5y-cKa"/>
                                             <constraint firstItem="e1J-RQ-ti3" firstAttribute="top" secondItem="xqJ-hU-a7S" secondAttribute="top" constant="20" id="Fok-kA-AkO"/>
+                                            <constraint firstItem="2b2-rL-NXJ" firstAttribute="leading" secondItem="xqJ-hU-a7S" secondAttribute="leading" id="Jae-I8-NX1"/>
                                             <constraint firstAttribute="height" constant="61" id="N7g-0G-nxs"/>
-                                            <constraint firstItem="2b2-rL-NXJ" firstAttribute="leading" secondItem="xqJ-hU-a7S" secondAttribute="leading" constant="20" id="fMx-d2-PHm"/>
+                                            <constraint firstItem="pK9-h3-ewU" firstAttribute="top" secondItem="e1J-RQ-ti3" secondAttribute="bottom" constant="-1" id="ZFb-0k-1lp"/>
                                             <constraint firstItem="2b2-rL-NXJ" firstAttribute="top" secondItem="xqJ-hU-a7S" secondAttribute="top" constant="20" id="fgY-vj-b7I"/>
                                             <constraint firstAttribute="width" constant="164" id="pms-ZL-aiI"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dg-6l-aeW">
+                                        <rect key="frame" x="234" y="162" width="40" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="36" y="162" width="30" height="30"/>
+                                        </variation>
+                                        <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="136" y="162" width="30" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="startPauseBtnClick:" destination="eHO-1v-JmZ" eventType="touchUpInside" id="hGW-LC-Jzi"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="8Op-D4-xv1" firstAttribute="top" secondItem="xqJ-hU-a7S" secondAttribute="bottom" id="7Ze-x6-S2N"/>
+                                    <constraint firstItem="8Op-D4-xv1" firstAttribute="top" secondItem="xqJ-hU-a7S" secondAttribute="bottom" constant="5" id="7Ze-x6-S2N"/>
                                     <constraint firstItem="8Dg-6l-aeW" firstAttribute="top" secondItem="8Op-D4-xv1" secondAttribute="bottom" constant="15" id="L38-Lw-B1z"/>
                                     <constraint firstAttribute="centerX" secondItem="8Op-D4-xv1" secondAttribute="centerX" id="LcW-ie-cEP"/>
                                     <constraint firstItem="8Dg-6l-aeW" firstAttribute="centerX" secondItem="QnE-dW-hpj" secondAttribute="centerX" constant="-50" id="P4j-Pg-pZj"/>
@@ -403,6 +428,7 @@
                         <outlet property="btnStartPause" destination="8Dg-6l-aeW" id="qyd-hQ-bXc"/>
                         <outlet property="btnStop" destination="eI9-xL-lwa" id="RM4-LW-fpi"/>
                         <outlet property="lblDistance" destination="e1J-RQ-ti3" id="bh5-mE-jrl"/>
+                        <outlet property="lblPace" destination="pK9-h3-ewU" id="rf1-w0-MJQ"/>
                         <outlet property="lblTime" destination="7X3-vk-E4W" id="TqX-Pd-dIB"/>
                         <outlet property="mapView" destination="ug2-jr-KRj" id="K1t-mL-JF9"/>
                     </connections>
@@ -465,6 +491,9 @@
                                         <exclude reference="Ic9-Hl-Xuo"/>
                                     </mask>
                                 </variation>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="356" y="97" width="233" height="111"/>
+                                </variation>
                             </segmentedControl>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ISA-8X-WBp">
                                 <rect key="frame" x="16" y="136" width="568" height="162"/>
@@ -491,6 +520,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                </variation>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sp-5F-KrS">
                                 <rect key="frame" x="16" y="327" width="60" height="21"/>
