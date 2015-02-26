@@ -108,6 +108,9 @@
                                 <state key="normal" title="Quick start">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="eHO-1v-JmZ" kind="presentation" identifier="quickstart" id="DCk-3l-KQX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekj-RD-jka">
                                 <rect key="frame" x="0.0" y="40" width="150" height="40"/>
@@ -217,7 +220,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="etN-g6-etI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="447" y="392"/>
+            <point key="canvasLocation" x="454" y="392"/>
         </scene>
         <!--Active Run-->
         <scene sceneID="1zO-iN-tAc">
@@ -944,4 +947,7 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="DCk-3l-KQX"/>
+    </inferredMetricsTieBreakers>
 </document>

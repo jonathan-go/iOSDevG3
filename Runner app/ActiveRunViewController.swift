@@ -24,6 +24,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     var manager:CLLocationManager!
     var myLocations: [CLLocation] = []
     
+    var delegate: ScheduleRunsViewControllerDelegate! = nil
+    
     private var timer = NSTimer()
     private var startTime = NSTimeInterval()
     private var savedTime = NSTimeInterval()
