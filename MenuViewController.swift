@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 protocol ScheduleRunsFirstViewControllerDelegate{
     func updateScheduleRunsTable()
 }
@@ -21,8 +22,37 @@ class MenuViewController: UIViewController, ScheduleRunsViewControllerDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let popup = segue.destinationViewController as ScheduleARunViewController
-        popup.delegate = self
+        if segue.identifier == "quickstart" {
+            
+            //Saves Run to CoreData
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let managedContext = appDelegate.managedObjectContext!
+            let entity = NSEntityDescription.entityForName("Run", inManagedObjectContext: managedContext)
+            let run = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as Run
+            
+            let timeAsString = NSDate().description
+            let stringLength = countElements(timeAsString)
+            let substringIndex = 10 //Ensures that Year, Month and day will be shown
+            
+            run.name = "Quickstart " + timeAsString.substringToIndex(advance(timeAsString.startIndex, substringIndex))
+            run.startDate = NSDate()
+            run.status = RunHelper.Status.Started.rawValue
+            run.repeatingStatus = RunHelper.RepeatingStatus.None.rawValue
+            
+            var error: NSError?
+            if !managedContext.save(&error) {
+                println("Could not save/schedule run")
+            }
+            
+            //Sends Objet to ActiveRun
+            let popup = segue.destinationViewController as ActiveRunViewController
+            popup.runToShow = run
+        
+        }
+        else{
+            let popup = segue.destinationViewController as ScheduleARunViewController
+            popup.delegate = self
+        }
         
     }
 
