@@ -83,6 +83,13 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
             lblAvgSpeed.text = "0m/s"
             lblTime.text = "00:00"
         }
+        
+        let imageCode = runToShow!.valueForKey("weather") as String?
+        if imageCode != nil {
+            imageWeather.image = WeatherHelper.getWeatherImage(runToShow!.weather)
+        }
+        
+        loadRoute()
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,5 +98,67 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func backBtnClick(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //Draws a polyline to display the route
+    // CREATED BY ELIAS NILSSON
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if overlay is MKPolyline {
+            var polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.blueColor()
+            polylineRenderer.lineWidth = 4
+            return polylineRenderer
+        }
+        return nil
+    }
+    
+    //%%%%%%%%%%%%%%%%SKA VARA I COMPLETED RUNS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    // CREATED BY ELIAS NILSSON
+    //Loads the coordinates and draws the route on the map
+    func loadRoute() {
+        var descriptor: NSSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
+        let array = runToShow!.locations.sortedArrayUsingDescriptors([descriptor])
+        
+        if (array.count > 0) {
+            var coordArr: [CLLocationCoordinate2D] = []
+            
+            for location in array {
+                let loc = location as Location
+                let lat = Double(loc.latitude)
+                let long = Double(loc.longitude)
+                let coord = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                coordArr.append(coord)
+            }
+            
+            var zoomRect: MKMapRect = MKMapRectNull
+            
+            for index in 0...coordArr.count-1 {
+                var i = coordArr.count-1 - index
+                
+                if(i > 0){
+                    let c1 = coordArr[i]
+                    let c2 = coordArr[i-1]
+                    var a = [c1, c2]
+                    var polyline = MKPolyline(coordinates: &a, count: a.count)
+                    mapView.addOverlay(polyline)
+                }
+                
+                
+                
+                let locPoint: MKMapPoint = MKMapPointForCoordinate(coordArr[i])
+                let locRect: MKMapRect = MKMapRectMake(locPoint.x, locPoint.y, 0, 0)
+                
+                if (MKMapRectIsNull(zoomRect)) {
+                    zoomRect = locRect
+                }
+                else {
+                    zoomRect = MKMapRectUnion(zoomRect, locRect)
+                }
+            }
+            
+            mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+        }
+        
     }
 }

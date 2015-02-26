@@ -18,9 +18,11 @@ class WeatherHelper {
     
     class func getWeatherImage(imagecode: String) -> UIImage {
         
-        var image = UIImage()
-        image = UIImage(named: imagecode + ".png")!
-        return image
+        var image = UIImage(named: imagecode + ".png")
+        if image == nil {
+            image = UIImage(named: "no_weather")
+        }
+        return image!
     }
     
     class func getImagecodeFromApi(requestedDate: NSDate, location: String) -> String {
