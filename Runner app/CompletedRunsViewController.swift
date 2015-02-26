@@ -29,8 +29,10 @@ class CompletedRunsViewController: UITableViewController {
         return runs.count
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        //Todo
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("RunDetailsViewController") as RunDetailsViewController
+        viewController.runToShow = runs[indexPath.row]
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
