@@ -246,7 +246,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ug2-jr-KRj">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ug2-jr-KRj">
                                 <rect key="frame" x="0.0" y="300" width="600" height="251"/>
                             </mapView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QnE-dW-hpj">
@@ -639,10 +639,10 @@
                                 <exclude reference="wsY-zD-W0j"/>
                                 <exclude reference="54u-Hl-oOE"/>
                                 <exclude reference="wm6-QD-XuN"/>
-                                <exclude reference="dcl-qc-GoY"/>
-                                <exclude reference="uyN-67-2Bb"/>
                                 <exclude reference="0gh-1K-MAn"/>
                                 <exclude reference="N81-gk-9dl"/>
+                                <exclude reference="dcl-qc-GoY"/>
+                                <exclude reference="uyN-67-2Bb"/>
                                 <exclude reference="E4u-JA-Wvn"/>
                                 <exclude reference="OrV-MJ-R30"/>
                                 <exclude reference="bPh-oX-0SI"/>
@@ -666,14 +666,14 @@
                                 <exclude reference="FhM-NN-wDg"/>
                                 <include reference="wm6-QD-XuN"/>
                                 <exclude reference="yp2-Cr-okf"/>
-                                <exclude reference="MwQ-wB-A4B"/>
-                                <exclude reference="UwC-2i-9JZ"/>
-                                <include reference="dcl-qc-GoY"/>
-                                <include reference="uyN-67-2Bb"/>
                                 <include reference="0gh-1K-MAn"/>
                                 <include reference="N81-gk-9dl"/>
                                 <exclude reference="jrJ-IT-LZJ"/>
                                 <exclude reference="kIa-Fl-ldp"/>
+                                <exclude reference="MwQ-wB-A4B"/>
+                                <exclude reference="UwC-2i-9JZ"/>
+                                <include reference="dcl-qc-GoY"/>
+                                <include reference="uyN-67-2Bb"/>
                                 <include reference="E4u-JA-Wvn"/>
                                 <exclude reference="H6v-5m-6FC"/>
                                 <include reference="OrV-MJ-R30"/>
