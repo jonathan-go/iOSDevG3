@@ -1077,13 +1077,13 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="i2o-vr-pEA"/>
+                                <exclude reference="X1Q-ae-18k"/>
+                                <exclude reference="d90-Qs-21b"/>
                                 <exclude reference="pus-Wi-la2"/>
                                 <exclude reference="cq4-gZ-Rhx"/>
                                 <exclude reference="Eb0-tz-PvZ"/>
                                 <exclude reference="xgi-1O-r3V"/>
                                 <exclude reference="Bgt-tV-Gvi"/>
-                                <exclude reference="X1Q-ae-18k"/>
-                                <exclude reference="d90-Qs-21b"/>
                                 <exclude reference="ljH-CW-tz3"/>
                                 <exclude reference="q3m-xx-5Yh"/>
                             </mask>
@@ -1091,22 +1091,22 @@
                         <variation key="heightClass=compact">
                             <mask key="constraints">
                                 <include reference="i2o-vr-pEA"/>
+                                <exclude reference="bKg-Ns-zwM"/>
+                                <exclude reference="K3x-iS-IKv"/>
+                                <exclude reference="UZ2-5q-txA"/>
+                                <include reference="X1Q-ae-18k"/>
+                                <include reference="d90-Qs-21b"/>
+                                <exclude reference="r03-7W-HXi"/>
                                 <exclude reference="PcC-dy-oj8"/>
                                 <include reference="pus-Wi-la2"/>
                                 <exclude reference="caN-ux-CUg"/>
                                 <include reference="cq4-gZ-Rhx"/>
                                 <exclude reference="2WC-dJ-ta3"/>
                                 <include reference="Eb0-tz-PvZ"/>
-                                <exclude reference="bKg-Ns-zwM"/>
                                 <exclude reference="gKH-fw-5fa"/>
                                 <include reference="xgi-1O-r3V"/>
                                 <include reference="Bgt-tV-Gvi"/>
                                 <exclude reference="Lsy-lo-T9a"/>
-                                <exclude reference="K3x-iS-IKv"/>
-                                <exclude reference="UZ2-5q-txA"/>
-                                <include reference="X1Q-ae-18k"/>
-                                <include reference="d90-Qs-21b"/>
-                                <exclude reference="r03-7W-HXi"/>
                                 <exclude reference="Avd-97-46V"/>
                                 <include reference="ljH-CW-tz3"/>
                                 <include reference="q3m-xx-5Yh"/>
@@ -1136,6 +1136,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DCk-3l-KQX"/>
+        <segue reference="cbr-QP-IfE"/>
     </inferredMetricsTieBreakers>
 </document>

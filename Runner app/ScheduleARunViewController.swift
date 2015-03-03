@@ -15,13 +15,14 @@ protocol ScheduleRunsViewControllerDelegate{
 }
 
 // This class handles the Schedule run view, which is used to schedule a run
-class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, ScheduleArunDelegate{
+class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, WeatherHelperDelegate{
     
     var delegate: ScheduleRunsViewControllerDelegate! = nil
     var locationManager = CLLocationManager()
     var longitude = ""
     var latitude = ""
     var date = NSDate()
+    var imageCode = "no_weather"
 
     @IBOutlet weak var txtbox_RunName: UITextField!
     @IBOutlet weak var uiDatePicker_RunDate: UIDatePicker!
@@ -42,6 +43,7 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, 
         let image = WeatherHelper.getWeatherImage(imagecode)
         println(image)
         ImageView_Map.image = WeatherHelper.getWeatherImage(imagecode)
+        imageCode = imagecode
         
     }
     
@@ -121,6 +123,7 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, 
         run.name = runName
         run.startDate = runDate
         run.status = RunHelper.Status.Scheduled.rawValue
+        run.weather = imageCode
         
         var error: NSError?
         if !managedContext.save(&error) {
@@ -141,7 +144,10 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, 
         locationManager.stopUpdatingLocation()
         longitude = locationManager.location.coordinate.longitude.description
         latitude = locationManager.location.coordinate.latitude.description
-        
+        date = datePicker.date
+        if longitude != "" && latitude != ""{
+            WeatherHelper.getImagecodeFromApi(date, longitude: longitude, latitude: latitude, delegate: self)
+        }
     }
 
     
