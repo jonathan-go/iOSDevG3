@@ -11,6 +11,13 @@ import CoreData
 
 class StatisticsViewController: UIViewController {
     
+    @IBOutlet weak var diagramView: UIView!
+    @IBOutlet weak var lblTDistance: UILabel!
+    @IBOutlet weak var lblAvgSpeed: UILabel!
+    @IBOutlet weak var lblTTime: UILabel!
+    @IBOutlet weak var lblTimePerWeek: UILabel!
+    @IBOutlet weak var lblCompRuns: UILabel!
+    
     func getDateFromString(date: String) -> NSDate {
         
         let dateStringFormatter = NSDateFormatter()
@@ -28,6 +35,35 @@ class StatisticsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func gatherStatistics() {
+        
+        var runs = RunHelper.GetCompletedRuns()
+        
+        // Gather the statistics from the runs
+        var tDistance: Int = 0
+        var avgSpeed: Float = 0.0
+        var tTime: Int = 0
+        var timePerWeek: Int = 0
+        var completedRuns: Int = runs.count
+        
+        var weekTime: [String : (Int, Int)] = [String : (Int, Int)]()
+        
+        for item in runs {
+            // Distance
+            let dDistance = Float(item.distance.intValue)
+            let dTime = Float(item.savedTime.intValue / 60) // saved in minutes
+            avgSpeed += dDistance/dTime
+            
+            let calendar = NSCalendar.currentCalendar()
+            let year = calendar.component(NSCalendarUnit.CalendarUnitYear, fromDate: item.startDate)
+            let week = calendar.component(NSCalendarUnit.CalendarUnitWeekOfYear, fromDate: item.startDate)
+            if let index = weekTime.indexForKey("\(year)\(week)") {
+                // CONTINUE
+            } else {
+                // CONTINUE
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -38,25 +74,4 @@ class StatisticsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    @IBAction func CreateTestRuns(sender: UIButton) {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedObjectContext = appDelegate.managedObjectContext
-        let newItem = NSEntityDescription.insertNewObjectForEntityForName("Run", inManagedObjectContext: managedObjectContext!) as Run
-        
-        newItem.name = "Testrun OAOAOA"
-        newItem.distance = 12
-        newItem.startDate = getDateFromString("2015-02-17 13:00")
-        newItem.lastResumeDate = getDateFromString("2015-02-17 17:00")
-        newItem.savedTime = Double(600.0)
-        newItem.status = RunHelper.Status.Scheduled.rawValue
-        
-        var error: NSError?
-        if !managedObjectContext!.save(&error) {
-            println("Could not save \(error)")
-        }
-        
-        //NotificationManager.onApplicationExit()
-    }
 }

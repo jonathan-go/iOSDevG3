@@ -68,22 +68,7 @@ class CompletedRunsViewController: UITableViewController {
     
     func updateTable(){
         runs.removeAll(keepCapacity: false)
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: "Run")
-        var error: NSError?
-        
-        fetchRequest.predicate = NSPredicate(format: "status = %i" , RunHelper.Status.Completed.rawValue )
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: true)]
-        let fetchedResult = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
-        
-        if let results = fetchedResult{
-            runs = results
-        }
-
+        runs = RunHelper.GetCompletedRuns()
     }
-    
-    
 }
 
