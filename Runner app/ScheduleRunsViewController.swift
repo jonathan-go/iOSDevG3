@@ -8,14 +8,23 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
-class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationControllerDelegate, ScheduleRunsViewControllerDelegate {
+class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationControllerDelegate, CLLocationManagerDelegate, ScheduleRunsViewControllerDelegate, WeatherHelperDelegate {
     var runs = [Run]()
+    var locationManager = CLLocationManager()
+    var longitude = ""
+    var latitude = ""
+    var date = NSDate()
     //var unsortedRuns = [Run]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         updateTable()
         
     }
@@ -65,8 +74,11 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         }
         if let weatherBox = cell.viewWithTag(102) as? UIImageView{
             //weatherBox.image = UIImage(named: "chance_of_strom")
-            var image = WeatherHelper.getWeatherImage("01d")
-            weatherBox.image = image
+            weatherBox.image = WeatherHelper.getWeatherImage(run.weather)
+//            date = run.startDate
+//            if longitude != "" && latitude != ""{
+//                WeatherHelper.getImagecodeFromApi(date, longitude: longitude, latitude: latitude, delegate: self)
+//            }
         }
         
         return cell
@@ -123,6 +135,17 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
             }
         }
     
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        locationManager.stopUpdatingLocation()
+        longitude = locationManager.location.coordinate.longitude.description
+        latitude = locationManager.location.coordinate.latitude.description
+    }
+    
+    func updateWeatherImage(imagecode: String) {
+        println(imagecode)
+        let image = WeatherHelper.getWeatherImage(imagecode)
     }
 
 }
