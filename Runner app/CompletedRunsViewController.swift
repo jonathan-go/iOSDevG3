@@ -59,8 +59,9 @@ class CompletedRunsViewController: UITableViewController {
         }
         if let weatherBox = cell.viewWithTag(103) as? UIImageView{
             //weatherBox.image = UIImage(named: "chance_of_storm")
-            var image = WeatherHelper.getWeatherImage("02d")
-            weatherBox.image = image
+//            var image = WeatherHelper.getWeatherImage("02d")
+//            weatherBox.image = image
+            weatherBox.image = WeatherHelper.getWeatherImage(run.weather)
         }
         
         return cell
