@@ -22,6 +22,7 @@
 		3AE84B9F1A7A782800D9D31A /* Runner_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3AE84B9D1A7A782800D9D31A /* Runner_app.xcdatamodeld */; };
 		792E14C11A97681600477E8C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792E14C01A97681600477E8C /* Location.swift */; };
 		79990D511AA87D730011A39F /* PauseLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79990D501AA87D730011A39F /* PauseLocation.swift */; };
+		79990D531AA8A44E0011A39F /* CustomUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79990D521AA8A44E0011A39F /* CustomUITabBarController.swift */; };
 		89473C6E1A84F26000B21063 /* TestRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89473C6D1A84F26000B21063 /* TestRuns.swift */; };
 		89473CA11A8506B300B21063 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89473CA01A8506B300B21063 /* CoreData.framework */; };
 		899BEEDE1A93BA2E00A93B61 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899BEEDD1A93BA2E00A93B61 /* Run.swift */; };
@@ -60,6 +61,7 @@
 		3AE84B9E1A7A782800D9D31A /* Runner_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Runner_app.xcdatamodel; sourceTree = "<group>"; };
 		792E14C01A97681600477E8C /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		79990D501AA87D730011A39F /* PauseLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseLocation.swift; sourceTree = "<group>"; };
+		79990D521AA8A44E0011A39F /* CustomUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUITabBarController.swift; sourceTree = "<group>"; };
 		89473C6D1A84F26000B21063 /* TestRuns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRuns.swift; sourceTree = "<group>"; };
 		89473CA01A8506B300B21063 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		899BEEDD1A93BA2E00A93B61 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				3A601F891A96342B006FCDF4 /* NotificationManager.swift */,
 				89F823221A97855C001F1E52 /* WeatherHelper.swift */,
 				3A5C7D2D1A9F3B6E001F1143 /* RunDetailsViewController.swift */,
+				79990D521AA8A44E0011A39F /* CustomUITabBarController.swift */,
 			);
 			path = "Runner app";
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				3A4395741A939EC4001E8308 /* StatisticsViewController.swift in Sources */,
 				3AE84B7C1A7A775B00D9D31A /* AppDelegate.swift in Sources */,
 				E0369BA71A939EDC008DC689 /* ScheduleARunViewController.swift in Sources */,
+				79990D531AA8A44E0011A39F /* CustomUITabBarController.swift in Sources */,
 				3A5C7D2E1A9F3B6E001F1143 /* RunDetailsViewController.swift in Sources */,
 				89F823231A97855C001F1E52 /* WeatherHelper.swift in Sources */,
 				3AE84B7E1A7A775B00D9D31A /* ScheduleRunsViewController.swift in Sources */,
