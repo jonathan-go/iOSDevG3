@@ -11,7 +11,7 @@
         <scene sceneID="SB5-S8-nAC">
             <objects>
                 <navigationController id="LIM-Ya-yhs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Scheduled runs" image="first" id="8ag-PF-Ci0"/>
+                    <tabBarItem key="tabBarItem" title="Scheduled runs" image="Schedule" id="8ag-PF-Ci0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oac-Rb-wUa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -144,7 +144,7 @@
         <scene sceneID="DmM-S9-Ej8">
             <objects>
                 <navigationController title="Completed runs" id="0hF-RX-1lS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Completed runs" image="second" id="cRh-Fw-V6u"/>
+                    <tabBarItem key="tabBarItem" title="Completed runs" image="Completed" id="cRh-Fw-V6u"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XNp-Bh-f9E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -902,7 +902,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stats" image="first" id="9Rg-rS-L9I"/>
+                    <tabBarItem key="tabBarItem" title="Stats" image="Stats" id="9Rg-rS-L9I"/>
                     <connections>
                         <outlet property="diagramView" destination="oal-Nc-ER3" id="zyT-ZF-pxf"/>
                         <outlet property="lblAvgSpeed" destination="Mi7-Cm-t62" id="mCt-5O-IYQ"/>
@@ -1156,8 +1156,9 @@
     <resources>
         <image name="01d" width="50" height="50"/>
         <image name="10d" width="50" height="50"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="Completed" width="30" height="30"/>
+        <image name="Schedule" width="30" height="30"/>
+        <image name="Stats" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cbr-QP-IfE"/>
