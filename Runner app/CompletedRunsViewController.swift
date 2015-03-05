@@ -11,11 +11,26 @@ import CoreData
 
 class CompletedRunsViewController: UITableViewController {
     
+    @IBOutlet weak var lbl_searchDate: UILabel!
+    
+    @IBAction func btn_IncMonth(sender: AnyObject) {
+        if(currIncDecVal < 0)
+        {
+            currIncDecVal += 1
+            updateSelectedDate()
+        }
+    }
+    @IBAction func btn_DecMonth(sender: AnyObject) {
+        currIncDecVal -= 1
+        updateSelectedDate()
+    }
+    
     var runs = [Run]()
+    var currIncDecVal = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateTable()
+        updateSelectedDate()
         // Do any additional setup after loading the view, typically from a nib.
         
     }
@@ -70,6 +85,41 @@ class CompletedRunsViewController: UITableViewController {
     func updateTable(){
         runs.removeAll(keepCapacity: false)
         runs = RunHelper.GetCompletedRuns()
+    }
+    
+    //Handles the dateSelection
+    func updateSelectedDate() {
+        
+        //Creates a String with desired format
+        let date = NSDate()
+        let dateComp = NSDateComponents()
+        dateComp.month = currIncDecVal
+        let calendar = NSCalendar.currentCalendar()
+        let selectedDate = calendar.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions(0) )
+        
+        var formatter: NSDateFormatter = NSDateFormatter()
+        formatter.dateFormat = ("MMMM yyyy")
+        let stringDate: String = formatter.stringFromDate(selectedDate!)
+        
+        //Sets the start and the end of the month, these will be used to catch the runs done during the month
+        let dateCompEnd = calendar.components( NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit, fromDate: selectedDate!)
+        dateCompEnd.month += 1
+        dateCompEnd.day = 0
+        
+        let dateCompStart = calendar.components( NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: selectedDate!)
+        dateCompStart.day = 1
+        dateCompStart.hour = 0
+
+        let endOfMonthDate = calendar.dateFromComponents(dateCompEnd)
+        let startOfMonthDate = calendar.dateFromComponents(dateCompStart)
+
+        //TODO Test Dates with a DateFormatter
+        lbl_searchDate.text = stringDate
+        
+        //Send data to RunhelperClass
+        runs = RunHelper.GetCompletedRunsBetweenDates(startOfMonthDate!, endDate: endOfMonthDate!)
+        
+        updateTable()
     }
 }
 
