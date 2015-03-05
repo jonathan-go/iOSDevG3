@@ -13,10 +13,11 @@ import CoreLocation
 protocol WeatherHelperDelegate{
     func updateWeatherImage(imagecode: String)
 }
+protocol UpdateWeatherIconsDelegate{
+    func updateWeatherIcons(iconArray: [String])
+}
 
 class WeatherHelper {
-    
-    var delegate: WeatherHelperDelegate! = nil
     
     class func getWeatherImage(imagecode: String) -> UIImage {
         
@@ -31,7 +32,7 @@ class WeatherHelper {
         let todaysDate = NSDate()
         let daysBetween = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: todaysDate, toDate: requestedDate, options: NSCalendarOptions(0))
 
-        if daysBetween.day == 0{
+        if daysBetween.day == 0 {
             daysBetween.day = 1
         }
         if daysBetween.day < 16 && daysBetween.day > 0
@@ -40,36 +41,36 @@ class WeatherHelper {
             println(url)
             
             let session = NSURLSession.sharedSession()
-            let datatask = session.dataTaskWithURL(url, completionHandler:{
+            let datatask = session.dataTaskWithURL(url, completionHandler: {
                 data, response, error -> Void in
                 
                 var errorForJson: NSError?
                 let jsonData: NSData = data
-                if let jsonDict = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorForJson) as? NSDictionary{
+                if let jsonDict = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorForJson) as? NSDictionary {
                 
                 var info: NSArray = jsonDict.valueForKey("list") as NSArray
                 
                 var weatherInfo: NSArray = info.valueForKey("weather") as NSArray
                 
-                if let weatherArr = weatherInfo.objectAtIndex(weatherInfo.count - 1) as? NSArray{
-                    if let dict = weatherArr.objectAtIndex(weatherArr.count - 1) as? NSDictionary{
+                if let weatherArr = weatherInfo.objectAtIndex(weatherInfo.count - 1) as? NSArray {
+                    if let dict = weatherArr.objectAtIndex(weatherArr.count - 1) as? NSDictionary {
                         var imageCodeFromJson = dict.valueForKey("icon") as String
                         println(imageCodeFromJson)
                         let findString = (imageCodeFromJson as NSString).containsString("n")
                         
-                        if findString{
+                        if findString {
                             imageCodeFromJson = dropLast(imageCodeFromJson)
                             imageCodeFromJson = imageCodeFromJson + "d"
                         }
                         println(imageCodeFromJson)
-                        dispatch_async(dispatch_get_main_queue()){ () -> Void in
+                        dispatch_async(dispatch_get_main_queue()) { () -> Void in
                             delegate.updateWeatherImage(imageCodeFromJson)
                         }
                     }
                 }
                 }
                 
-                if let error = error{
+                if let error = error {
                     println("fel")
                 }
             })
@@ -80,4 +81,51 @@ class WeatherHelper {
         }
     }
     
+    class func updateWeatherIcons(longitude: String, latitude: String, delegate: UpdateWeatherIconsDelegate) {
+    
+        let todaysDate = NSDate()
+        
+        let url: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(latitude)&lon=\(longitude)&cnt=16&mode=json")!
+        println(url)
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url, completionHandler: { data, response, error -> Void in
+            
+            var errorForJson: NSError?
+            let jsonData: NSData = data
+            var iconArray: [String] = [String]()
+            if let jsonDict = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorForJson) as? NSDictionary {
+                //println(jsonDict)
+                
+                var info: NSArray = jsonDict.valueForKey("list") as NSArray
+                //println(info)
+                var weatherInfo: NSArray = info.valueForKey("weather") as NSArray
+                //println(weatherInfo)
+                
+                
+                for var i = 0 ; i < weatherInfo.count ; i++ {
+                    if let weatherArr = weatherInfo.objectAtIndex(i) as? NSArray {
+                        if let dict = weatherArr.objectAtIndex(0) as? NSDictionary {
+                            var imageCodeFromJson = dict.valueForKey("icon") as String
+                            let findString = (imageCodeFromJson as NSString).containsString("n")
+                            
+                            if findString{
+                                imageCodeFromJson = dropLast(imageCodeFromJson)
+                                imageCodeFromJson = imageCodeFromJson + "d"
+                            }
+
+                            iconArray.append(imageCodeFromJson)
+                        }
+                    }
+                }
+            }
+            println(iconArray)
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                delegate.updateWeatherIcons(iconArray)
+            }
+            
+        })
+        task.resume()
+
+    }
 }
