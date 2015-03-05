@@ -69,9 +69,9 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
         updateTime()
         
-        if(delegate != nil){
-            delegate.updateScheduleRunsTable()
-        }
+//        if(delegate != nil){
+//            delegate.updateScheduleRunsTable()
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -347,6 +347,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     @IBAction func backButtonClick(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
+        if delegate != nil {
+            delegate.updateScheduleRunsTable()
+        }
     }
-    
 }

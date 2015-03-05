@@ -70,13 +70,19 @@ class CompletedRunsViewController: UITableViewController {
             datelbl.text = stringDate
         }
         if let distancelbl = cell.viewWithTag(102) as? UILabel{
-            distancelbl.text = run.distance.stringValue + " km"
+            if run.distance.intValue < 1000 {
+                distancelbl.text = "\(run.distance.intValue)m"
+            } else {
+                distancelbl.text = String(format: "%.2f", run.distance.floatValue/1000.0) + "km"
+            }
         }
         if let weatherBox = cell.viewWithTag(103) as? UIImageView{
             //weatherBox.image = UIImage(named: "chance_of_storm")
 //            var image = WeatherHelper.getWeatherImage("02d")
 //            weatherBox.image = image
-            weatherBox.image = WeatherHelper.getWeatherImage(run.weather)
+            if let iconForWeather = run.weather {
+                weatherBox.image = WeatherHelper.getWeatherImage(iconForWeather)
+            }
         }
         
         return cell

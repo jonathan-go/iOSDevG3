@@ -18,16 +18,14 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var lblTimePerWeek: UILabel!
     @IBOutlet weak var lblCompRuns: UILabel!
     
-    func getDateFromString(date: String) -> NSDate {
-        
-        let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let d = dateStringFormatter.dateFromString(date)
-        return NSDate(timeInterval: 0, sinceDate: d!)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        gatherStatistics()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        gatherStatistics()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,8 +35,7 @@ class StatisticsViewController: UIViewController {
     
     private func gatherStatistics() {
         
-        var runs = RunHelper.GetCompletedRuns()
-        
+        var runs: [Run] = RunHelper.GetCompletedRuns()
         // Gather the statistics from the runs
         var tDistance: Int = 0
         var avgSpeed: Float = 0.0
@@ -46,22 +43,55 @@ class StatisticsViewController: UIViewController {
         var timePerWeek: Int = 0
         var completedRuns: Int = runs.count
         
-        var weekTime: [String : (Int, Int)] = [String : (Int, Int)]()
+        var weekTime: [String : Int] = [String : Int]()
         
+        println(runs.count)
         for item in runs {
             // Distance
             let dDistance = Float(item.distance.intValue)
             let dTime = Float(item.savedTime.intValue / 60) // saved in minutes
-            avgSpeed += dDistance/dTime
+            avgSpeed += dDistance/item.savedTime.floatValue
             
             let calendar = NSCalendar.currentCalendar()
             let year = calendar.component(NSCalendarUnit.CalendarUnitYear, fromDate: item.startDate)
             let week = calendar.component(NSCalendarUnit.CalendarUnitWeekOfYear, fromDate: item.startDate)
-            if let index = weekTime.indexForKey("\(year)\(week)") {
-                // CONTINUE
+            if let value = weekTime["\(year)\(week)"] {
+                weekTime["\(year)\(week)"] = value + Int(dTime)
             } else {
-                // CONTINUE
+                weekTime["\(year)\(week)"] = Int(dTime)
             }
+            
+            tDistance += Int(dDistance)
+            tTime += Int(dTime)
+        }
+        
+        if tDistance > 1000 {
+            lblTDistance.text = String(format: "%.2f", Float(tDistance)/1000.0) + "km"
+        } else {
+            lblTDistance.text = String(tDistance) + "m"
+        }
+        
+        if completedRuns > 0 {
+            lblAvgSpeed.text = String(format: "%.2f", avgSpeed/Float(completedRuns)) + "m/s"
+        } else {
+            lblAvgSpeed.text = "0m/s"
+        }
+        
+        let hours = tTime/60
+        if hours > 0 {
+            lblTTime.text = "\(hours) hours and \(tTime - (hours * 60)) minutes"
+        } else {
+            lblTTime.text = "\(tTime) minutes"
+        }
+        lblCompRuns.text = "\(completedRuns) runs"
+        
+        for item in weekTime {
+            timePerWeek += item.1
+        }
+        if weekTime.count > 0 {
+            lblTimePerWeek.text = "\(timePerWeek/weekTime.count) minutes/week"
+        } else {
+            lblTimePerWeek.text = "0 minutes/week"
         }
     }
 
