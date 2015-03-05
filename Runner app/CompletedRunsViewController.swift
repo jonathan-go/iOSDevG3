@@ -31,6 +31,7 @@ class CompletedRunsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSelectedDate()
+        updateTable()
         // Do any additional setup after loading the view, typically from a nib.
         
     }
@@ -122,10 +123,9 @@ class CompletedRunsViewController: UITableViewController {
         //TODO Test Dates with a DateFormatter
         lbl_searchDate.text = stringDate
         
-        //Send data to RunhelperClass
-        runs = RunHelper.GetCompletedRunsBetweenDates(startOfMonthDate!, endDate: endOfMonthDate!)
+        //var testruns = RunHelper.GetCompletedRunsBetweenDates(startOfMonthDate!, endDate: endOfMonthDate!)
         
-        updateTable()
+        //updateTable()
     }
 }
 
