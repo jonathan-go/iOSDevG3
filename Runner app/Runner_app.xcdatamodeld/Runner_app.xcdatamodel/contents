@@ -6,6 +6,12 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="locations" inverseEntity="Run" syncable="YES"/>
     </entity>
+    <entity name="PauseLocation" representedClassName="Runner_app.PauseLocation" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="pauseLocations" inverseEntity="Run" syncable="YES"/>
+    </entity>
     <entity name="Run" representedClassName="Runner_app.Run" syncable="YES">
         <attribute name="averageSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -22,9 +28,11 @@
         <attribute name="toLocation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="weather" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="run" inverseEntity="Location" syncable="YES"/>
+        <relationship name="pauseLocations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PauseLocation" inverseName="run" inverseEntity="PauseLocation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Location" positionX="4185" positionY="1122" width="128" height="103"/>
-        <element name="Run" positionX="4003" positionY="1107" width="128" height="270"/>
+        <element name="Location" positionX="4246" positionY="1301" width="128" height="103"/>
+        <element name="Run" positionX="3951" positionY="1107" width="128" height="283"/>
+        <element name="PauseLocation" positionX="4185" positionY="1071" width="128" height="103"/>
     </elements>
 </model>
