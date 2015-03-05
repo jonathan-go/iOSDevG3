@@ -1036,6 +1036,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pace:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-uQ-ckG">
+                                <rect key="frame" x="20" y="219" width="44" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyj-YV-Ca1">
+                                <rect key="frame" x="538" y="219" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1045,8 +1057,11 @@
                             <constraint firstItem="9Ap-vc-LbE" firstAttribute="centerY" secondItem="von-X8-0vc" secondAttribute="centerY" id="8Si-c0-wah"/>
                             <constraint firstItem="Yp1-od-flX" firstAttribute="centerY" secondItem="49Y-Fr-FQ5" secondAttribute="centerY" id="9cH-iG-7RY"/>
                             <constraint firstAttribute="trailing" secondItem="I1i-hs-lOU" secondAttribute="trailing" constant="20" id="Avd-97-46V"/>
+                            <constraint firstItem="JFT-cm-Gf4" firstAttribute="trailing" secondItem="eyj-YV-Ca1" secondAttribute="trailing" id="AyV-IV-gdx"/>
                             <constraint firstAttribute="centerX" secondItem="JFT-cm-Gf4" secondAttribute="trailing" constant="10" id="Bgt-tV-Gvi"/>
                             <constraint firstAttribute="centerX" secondItem="49Y-Fr-FQ5" secondAttribute="trailing" constant="10" id="Eb0-tz-PvZ"/>
+                            <constraint firstItem="ffv-uQ-ckG" firstAttribute="leading" secondItem="7xj-fA-DTz" secondAttribute="leading" id="GNg-0d-6an"/>
+                            <constraint firstItem="ffv-uQ-ckG" firstAttribute="centerY" secondItem="eyj-YV-Ca1" secondAttribute="centerY" constant="2" id="HSO-JW-xJb"/>
                             <constraint firstItem="XC5-FD-uFG" firstAttribute="leading" secondItem="nnq-3f-Sdu" secondAttribute="leading" id="INx-ao-GXI"/>
                             <constraint firstItem="JFT-cm-Gf4" firstAttribute="centerY" secondItem="7xj-fA-DTz" secondAttribute="centerY" id="IoZ-1D-be4"/>
                             <constraint firstAttribute="centerY" secondItem="JVb-sg-UO3" secondAttribute="top" id="K3x-iS-IKv"/>
@@ -1057,6 +1072,7 @@
                             <constraint firstItem="eIs-Um-h2X" firstAttribute="leading" secondItem="Yp1-od-flX" secondAttribute="leading" id="NlV-kM-ZmU"/>
                             <constraint firstItem="Yp1-od-flX" firstAttribute="leading" secondItem="9Ap-vc-LbE" secondAttribute="leading" id="Oba-Tw-oud"/>
                             <constraint firstItem="9Ap-vc-LbE" firstAttribute="top" secondItem="XC5-FD-uFG" secondAttribute="bottom" constant="25" id="P9E-on-Fam"/>
+                            <constraint firstItem="ffv-uQ-ckG" firstAttribute="top" secondItem="7xj-fA-DTz" secondAttribute="bottom" constant="5" id="PHs-q0-Nph"/>
                             <constraint firstAttribute="trailing" secondItem="von-X8-0vc" secondAttribute="trailing" constant="20" id="PcC-dy-oj8"/>
                             <constraint firstItem="JVb-sg-UO3" firstAttribute="top" secondItem="I1i-hs-lOU" secondAttribute="bottom" constant="10" id="UZ2-5q-txA"/>
                             <constraint firstAttribute="centerX" secondItem="JVb-sg-UO3" secondAttribute="leading" constant="-10" id="X1Q-ae-18k"/>
@@ -1127,6 +1143,7 @@
                         <outlet property="lblDate" destination="f6x-oh-gU4" id="6a4-zB-NVq"/>
                         <outlet property="lblDistance" destination="49Y-Fr-FQ5" id="g7k-5e-FrO"/>
                         <outlet property="lblName" destination="von-X8-0vc" id="9M0-rS-e6F"/>
+                        <outlet property="lblPace" destination="eyj-YV-Ca1" id="fnK-US-CcQ"/>
                         <outlet property="lblTime" destination="Rqb-fQ-Rxh" id="lqt-my-dYC"/>
                         <outlet property="mapView" destination="JVb-sg-UO3" id="7Pb-yf-1AJ"/>
                     </connections>

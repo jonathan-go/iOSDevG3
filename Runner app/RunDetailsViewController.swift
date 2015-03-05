@@ -16,6 +16,7 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var lblDistance: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblAvgSpeed: UILabel!
+    @IBOutlet weak var lblPace: UILabel!
     
     @IBOutlet weak var imageWeather: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
@@ -41,6 +42,13 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
             }
         } else {
             lblDistance.text = "0"
+        }
+        
+        if let pace = runToShow?.pace {
+            lblPace.text = pace
+        }
+        else {
+            lblPace.text = "Unknown"
         }
         
         if let date = runToShow?.startDate {
