@@ -74,7 +74,9 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         }
         if let weatherBox = cell.viewWithTag(102) as? UIImageView{
             //weatherBox.image = UIImage(named: "chance_of_strom")
-            weatherBox.image = WeatherHelper.getWeatherImage(run.weather)
+            if let iconForWeather = run.weather {
+                weatherBox.image = WeatherHelper.getWeatherImage(iconForWeather)
+            }
 //            date = run.startDate
 //            if longitude != "" && latitude != ""{
 //                WeatherHelper.getImagecodeFromApi(date, longitude: longitude, latitude: latitude, delegate: self)

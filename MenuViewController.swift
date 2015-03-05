@@ -11,6 +11,7 @@ import CoreData
 protocol ScheduleRunsFirstViewControllerDelegate{
     func updateScheduleRunsTable()
 }
+
 class MenuViewController: UIViewController, ScheduleRunsViewControllerDelegate {
     
     var delegate: ScheduleRunsViewControllerDelegate! = nil
@@ -47,14 +48,12 @@ class MenuViewController: UIViewController, ScheduleRunsViewControllerDelegate {
             //Sends Objet to ActiveRun
             let popup = segue.destinationViewController as ActiveRunViewController
             popup.runToShow = run
-            popup.delegate = delegate
-        
+            popup.delegate = self
         }
         else{
             let popup = segue.destinationViewController as ScheduleARunViewController
             popup.delegate = self
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
