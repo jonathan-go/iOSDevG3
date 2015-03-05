@@ -488,6 +488,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="btnBack" destination="ojn-sf-U5w" id="FCu-L1-Yp2"/>
                         <outlet property="btnStartPause" destination="8Dg-6l-aeW" id="qyd-hQ-bXc"/>
                         <outlet property="btnStop" destination="eI9-xL-lwa" id="RM4-LW-fpi"/>
                         <outlet property="lblDistance" destination="e1J-RQ-ti3" id="bh5-mE-jrl"/>
@@ -1046,7 +1047,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JVb-sg-UO3">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVb-sg-UO3">
                                 <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                             </mapView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I1i-hs-lOU">

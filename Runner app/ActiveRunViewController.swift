@@ -18,6 +18,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @IBOutlet weak var btnStartPause: UIButton!
     @IBOutlet weak var btnStop: UIButton!
     @IBOutlet weak var lblPace: UILabel!
+    @IBOutlet weak var btnBack: UIBarButtonItem!
     
     var runToShow: Run?
     
@@ -57,7 +58,6 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         mapView.delegate = self
         mapView.showsUserLocation = true
-        
         
         
         // Initialize time with values.
@@ -190,6 +190,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     func startMap() {
         manager.startUpdatingLocation()
+        btnBack.enabled = false
     }
     func pauseMap(){
         manager.stopUpdatingLocation()
@@ -204,6 +205,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     /////////
     func stopMap() {
         manager.stopUpdatingLocation()
+        btnBack.enabled = true
         
         var zoomRect: MKMapRect = MKMapRectNull
         

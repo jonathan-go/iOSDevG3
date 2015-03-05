@@ -22,6 +22,7 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     var runToShow: Run?
+    var coordArr: [CLLocationCoordinate2D] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,7 +129,6 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
         let pauseArray = runToShow!.pauseLocations.sortedArrayUsingDescriptors([descriptor])
         
         if (array.count > 0) {
-            var coordArr: [CLLocationCoordinate2D] = []
             var pauseCoordArr: [CLLocationCoordinate2D] = []
             var pause = false
             
@@ -140,8 +140,6 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
                 
                 coordArr.append(coord)
             }
-            
-            var zoomRect: MKMapRect = MKMapRectNull
             
             for index in 0...coordArr.count-1 {
                 var paused = false
@@ -165,22 +163,32 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
                         mapView.addOverlay(polyline)
                     }
                 }
-                
-                
-                
-                let locPoint: MKMapPoint = MKMapPointForCoordinate(coordArr[index])
-                let locRect: MKMapRect = MKMapRectMake(locPoint.x, locPoint.y, 0, 0)
-                
-                if (MKMapRectIsNull(zoomRect)) {
-                    zoomRect = locRect
-                }
-                else {
-                    zoomRect = MKMapRectUnion(zoomRect, locRect)
-                }
             }
             
-            mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+        }
+    }
+    
+    func zoomMap(arr: [CLLocationCoordinate2D]) {
+        
+        var loadRect: MKMapRect = MKMapRectNull
+        
+        for coord in arr {
+            let locPoint: MKMapPoint = MKMapPointForCoordinate(coord)
+            let locRect: MKMapRect = MKMapRectMake(locPoint.x, locPoint.y, 0, 0)
+            
+            if (MKMapRectIsNull(loadRect)) {
+                loadRect = locRect
+            }
+            else {
+                loadRect = MKMapRectUnion(loadRect, locRect)
+            }
         }
         
+        mapView.setVisibleMapRect(loadRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+    }
+    
+    func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
+        // this is where visible maprect should be set
+        zoomMap(coordArr)
     }
 }
