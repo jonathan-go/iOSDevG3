@@ -84,9 +84,8 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
             lblTime.text = "00:00"
         }
         
-        let imageCode = runToShow!.valueForKey("weather") as String?
-        if imageCode != nil {
-            imageWeather.image = WeatherHelper.getWeatherImage(runToShow!.weather)
+        if let imageCode = runToShow?.weather {
+            imageWeather.image = WeatherHelper.getWeatherImage(imageCode)
         }
         
         loadRoute()
