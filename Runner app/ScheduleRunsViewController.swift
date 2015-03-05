@@ -10,12 +10,14 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationControllerDelegate, CLLocationManagerDelegate, ScheduleRunsViewControllerDelegate, WeatherHelperDelegate {
+class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationControllerDelegate, CLLocationManagerDelegate, ScheduleRunsViewControllerDelegate, UpdateWeatherIconsDelegate {
     var runs = [Run]()
     var locationManager = CLLocationManager()
     var longitude = ""
     var latitude = ""
     var date = NSDate()
+    var newIconsArray: [String] = [String]()
+    var updateWeather: Bool = false;
     //var unsortedRuns = [Run]()
 
     override func viewDidLoad() {
@@ -73,12 +75,7 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
             datelbl.text = stringDate
         }
         if let weatherBox = cell.viewWithTag(102) as? UIImageView{
-            //weatherBox.image = UIImage(named: "chance_of_strom")
-            weatherBox.image = WeatherHelper.getWeatherImage(run.weather)
-//            date = run.startDate
-//            if longitude != "" && latitude != ""{
-//                WeatherHelper.getImagecodeFromApi(date, longitude: longitude, latitude: latitude, delegate: self)
-//            }
+        
         }
         
         return cell
@@ -134,18 +131,41 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
                 }
             }
         }
-    
+        //updateWeatherFunc()
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         locationManager.stopUpdatingLocation()
         longitude = locationManager.location.coordinate.longitude.description
         latitude = locationManager.location.coordinate.latitude.description
+        //updateWeatherFunc()
     }
     
-    func updateWeatherImage(imagecode: String) {
-        println(imagecode)
-        let image = WeatherHelper.getWeatherImage(imagecode)
+    func updateWeatherIcons(iconArray: [String]) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        var error: NSError?
+        
+        println(runs.count)
+        for var i = 0; i < runs.count; i++ {
+            println(runs)
+            let daysBetween = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: date, toDate: runs[i].startDate, options: NSCalendarOptions(0))
+            if daysBetween.day < 16 && daysBetween.day > 0 {
+                runs[i].weather = "10d"
+            }
+            println(runs)
+        }
+        if !managedContext.save(&error) {
+            println("Could not save/schedule run")
+        }
+        updateTable()
+    }
+    
+    func updateWeatherFunc()  {
+//        if updateWeather {
+//            WeatherHelper.updateWeatherIcons(longitude, latitude: latitude, delegate: self)
+//        }
+//        
     }
 
 }
