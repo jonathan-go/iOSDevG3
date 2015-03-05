@@ -26,5 +26,6 @@ class Run: NSManagedObject {
     @NSManaged var weather: String?
     @NSManaged var locations: NSSet
     @NSManaged var pace: String
+    @NSManaged var pauseLocations: NSSet
 
 }

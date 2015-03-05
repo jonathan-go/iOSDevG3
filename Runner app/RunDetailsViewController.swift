@@ -105,21 +105,24 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
         if overlay is MKPolyline {
             var polylineRenderer = MKPolylineRenderer(overlay: overlay)
             polylineRenderer.strokeColor = UIColor.blueColor()
-            polylineRenderer.lineWidth = 4
+            polylineRenderer.lineWidth = 5
             return polylineRenderer
         }
         return nil
     }
     
-    //%%%%%%%%%%%%%%%%SKA VARA I COMPLETED RUNS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
     // CREATED BY ELIAS NILSSON
     //Loads the coordinates and draws the route on the map
     func loadRoute() {
         var descriptor: NSSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
         let array = runToShow!.locations.sortedArrayUsingDescriptors([descriptor])
+        let pauseArray = runToShow!.pauseLocations.sortedArrayUsingDescriptors([descriptor])
         
         if (array.count > 0) {
             var coordArr: [CLLocationCoordinate2D] = []
+            var pauseCoordArr: [CLLocationCoordinate2D] = []
+            var pause = false
             
             for location in array {
                 let loc = location as Location
@@ -133,19 +136,31 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
             var zoomRect: MKMapRect = MKMapRectNull
             
             for index in 0...coordArr.count-1 {
-                var i = coordArr.count-1 - index
+                var paused = false
                 
-                if(i > 0){
-                    let c1 = coordArr[i]
-                    let c2 = coordArr[i-1]
-                    var a = [c1, c2]
-                    var polyline = MKPolyline(coordinates: &a, count: a.count)
-                    mapView.addOverlay(polyline)
+                if(index > 0){
+                    let c1 = coordArr[index]
+                    
+                    paused = false
+                    for pauseLoc in pauseArray{
+                        let loc = pauseLoc as PauseLocation
+                        if(c1.latitude == loc.latitude && c1.longitude == loc.longitude){
+                            paused = true
+                        }
+                    }
+                    
+                    if (!paused)
+                    {
+                        let c2 = coordArr[index-1]
+                        var a = [c1, c2]
+                        var polyline = MKPolyline(coordinates: &a, count: a.count)
+                        mapView.addOverlay(polyline)
+                    }
                 }
                 
                 
                 
-                let locPoint: MKMapPoint = MKMapPointForCoordinate(coordArr[i])
+                let locPoint: MKMapPoint = MKMapPointForCoordinate(coordArr[index])
                 let locRect: MKMapRect = MKMapRectMake(locPoint.x, locPoint.y, 0, 0)
                 
                 if (MKMapRectIsNull(zoomRect)) {

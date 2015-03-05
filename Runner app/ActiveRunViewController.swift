@@ -23,6 +23,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     var manager:CLLocationManager!
     var myLocations: [CLLocation] = []
+    var myPauseLocations: [CLLocation] = []
     
     var delegate: ScheduleRunsViewControllerDelegate! = nil
     
@@ -32,7 +33,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     private var distance = 0.0
     
     private var running: Bool = false
-    private var pauseLocation: Bool = false
+    private var paused: Bool = false
     
     lazy var managedObjectContext: NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -102,7 +103,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
         if (locations[0].horizontalAccuracy < 20) {
             if (myLocations.count > 1 && running){
-                if(!pauseLocation){
+                if(!paused){
                     var sourceIndex = myLocations.count - 1
                     var destinationIndex = myLocations.count - 2
                     
@@ -115,11 +116,12 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     mapView.addOverlay(polyline)
                 }
                 else {
-                    pauseLocation = false
+                    paused = false
+                }
                 }
             }
-        }
     }
+    
     
     
     /////////
@@ -191,8 +193,9 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     func pauseMap(){
         manager.stopUpdatingLocation()
-        
-        pauseLocation = true
+        paused = true
+        let loc = myLocations[myLocations.endIndex-1]
+        myPauseLocations.append(loc as CLLocation)
     }
     
     /////////
@@ -241,10 +244,23 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
             locArr.addObject(locationObject)
         }
         
+        var pauseLocArr: NSMutableArray = []
+        for pauseLoc in myPauseLocations {
+            let entity = NSEntityDescription.entityForName("PauseLocation", inManagedObjectContext: managedContext)
+            let locationObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as PauseLocation
+            
+            locationObject.latitude = pauseLoc.coordinate.latitude
+            locationObject.longitude = pauseLoc.coordinate.longitude
+            locationObject.timestamp = pauseLoc.timestamp
+            pauseLocArr.addObject(locationObject)
+        }
+        
         runToShow?.pace = lblPace.text!
         runToShow?.distance = distance
-        let set = NSSet(array: locArr)
-        runToShow?.locations = set
+        let locSet = NSSet(array: locArr)
+        let pauSet = NSSet(array: pauseLocArr)
+        runToShow?.locations = locSet
+        runToShow?.pauseLocations = pauSet
         
         saveRun()
     }
