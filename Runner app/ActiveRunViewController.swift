@@ -229,7 +229,18 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
             }
         }
         
-        mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+        mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(20, 20, 20, 20), animated: true)
+        
+        var startPin = MKPointAnnotation()
+        startPin.coordinate = myLocations[0].coordinate
+        startPin.title = "Start"
+            
+        var finishPin = MKPointAnnotation()
+        finishPin.coordinate = myLocations[myLocations.endIndex-1].coordinate
+        finishPin.title = "Finish"
+            
+        mapView.addAnnotation(startPin)
+        mapView.addAnnotation(finishPin)
         
         saveRoute()
     }

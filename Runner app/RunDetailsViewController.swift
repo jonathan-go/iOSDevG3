@@ -166,6 +166,7 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
         }
         
         zoomMap(coordArr)
+        addPins()
     }
     
     func zoomMap(arr: [CLLocationCoordinate2D]) {
@@ -184,10 +185,23 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
             }
         }
         
-        mapView.setVisibleMapRect(loadRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+        mapView.setVisibleMapRect(loadRect, edgePadding: UIEdgeInsetsMake(20, 20, 20, 20), animated: true)
     }
     
     func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
         zoomMap(coordArr)
+    }
+    
+    func addPins() {
+        var startPin = MKPointAnnotation()
+        startPin.coordinate = coordArr[0]
+        startPin.title = "Start"
+        
+        var finishPin = MKPointAnnotation()
+        finishPin.coordinate = coordArr[coordArr.endIndex-1]
+        finishPin.title = "Finish"
+        
+        mapView.addAnnotation(startPin)
+        mapView.addAnnotation(finishPin)
     }
 }
