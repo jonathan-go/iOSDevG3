@@ -29,6 +29,7 @@
 		89E8D1B01A96263B00BD0334 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8D1AF1A96263B00BD0334 /* MenuViewController.swift */; };
 		89F823231A97855C001F1E52 /* WeatherHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F823221A97855C001F1E52 /* WeatherHelper.swift */; };
 		E0369BA71A939EDC008DC689 /* ScheduleARunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0369BA61A939EDC008DC689 /* ScheduleARunViewController.swift */; };
+		E0D594DC1AA9DAD9008878D6 /* Dongle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D594DB1AA9DAD9008878D6 /* Dongle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		89E8D1AF1A96263B00BD0334 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = ../MenuViewController.swift; sourceTree = "<group>"; };
 		89F823221A97855C001F1E52 /* WeatherHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHelper.swift; sourceTree = "<group>"; };
 		E0369BA61A939EDC008DC689 /* ScheduleARunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleARunViewController.swift; sourceTree = "<group>"; };
+		E0D594DB1AA9DAD9008878D6 /* Dongle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dongle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				3AE84B7B1A7A775B00D9D31A /* AppDelegate.swift */,
 				89E8D1AF1A96263B00BD0334 /* MenuViewController.swift */,
+				E0D594DB1AA9DAD9008878D6 /* Dongle.swift */,
 				3AE84B7D1A7A775B00D9D31A /* ScheduleRunsViewController.swift */,
 				3AE84B7F1A7A775B00D9D31A /* CompletedRunsViewController.swift */,
 				3AE84B811A7A775B00D9D31A /* Main.storyboard */,
@@ -268,6 +271,7 @@
 			files = (
 				3A095DFE1A8D1A9400414F91 /* ActiveRunViewController.swift in Sources */,
 				3A4395761A93AF3C001E8308 /* RunHelper.swift in Sources */,
+				E0D594DC1AA9DAD9008878D6 /* Dongle.swift in Sources */,
 				899BEEDE1A93BA2E00A93B61 /* Run.swift in Sources */,
 				3AE84B801A7A775B00D9D31A /* CompletedRunsViewController.swift in Sources */,
 				89473C6E1A84F26000B21063 /* TestRuns.swift in Sources */,

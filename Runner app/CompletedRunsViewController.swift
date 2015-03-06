@@ -19,6 +19,7 @@ class CompletedRunsViewController: UITableViewController {
             currIncDecVal += 1
             updateSelectedDate()
         }
+        
     }
     @IBAction func btn_DecMonth(sender: AnyObject) {
         currIncDecVal -= 1
@@ -106,10 +107,15 @@ class CompletedRunsViewController: UITableViewController {
         let dateCompEnd = calendar.components( NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit, fromDate: selectedDate!)
         dateCompEnd.month += 1
         dateCompEnd.day = 0
+        dateCompEnd.hour = 23
+        dateCompEnd.minute = 59
+        dateCompEnd.second = 59
         
         let dateCompStart = calendar.components( NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: selectedDate!)
         dateCompStart.day = 1
         dateCompStart.hour = 0
+        dateCompStart.minute = 0
+        dateCompStart.second = 0
 
         let endOfMonthDate = calendar.dateFromComponents(dateCompEnd)
         let startOfMonthDate = calendar.dateFromComponents(dateCompStart)
