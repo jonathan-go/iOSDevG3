@@ -187,11 +187,19 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
     }
     
-    
+    /////////
+    //  Starts the tracking and disables the back button to prevent the user from stopping the tracking.
+    //  - Elias Nilsson
+    /////////
     func startMap() {
         manager.startUpdatingLocation()
         btnBack.enabled = false
     }
+    
+    /////////
+    //  Stops the tracking and appends the last location to a seperate array to keep track of the "pause locations".
+    //  - Elias Nilsson
+    /////////
     func pauseMap(){
         manager.stopUpdatingLocation()
         paused = true
@@ -221,7 +229,18 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
             }
         }
         
-        mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+        mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(20, 20, 20, 20), animated: true)
+        
+        var startPin = MKPointAnnotation()
+        startPin.coordinate = myLocations[0].coordinate
+        startPin.title = "Start"
+            
+        var finishPin = MKPointAnnotation()
+        finishPin.coordinate = myLocations[myLocations.endIndex-1].coordinate
+        finishPin.title = "Finish"
+            
+        mapView.addAnnotation(startPin)
+        mapView.addAnnotation(finishPin)
         
         saveRoute()
     }

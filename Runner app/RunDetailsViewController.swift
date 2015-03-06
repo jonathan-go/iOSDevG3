@@ -141,10 +141,9 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
                 coordArr.append(coord)
             }
             
-            for index in 0...coordArr.count-1 {
+            for index in 0...coordArr.count-2 {
                 var paused = false
                 
-                if(index > 0){
                     let c1 = coordArr[index]
                     
                     paused = false
@@ -157,15 +156,17 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
                     
                     if (!paused)
                     {
-                        let c2 = coordArr[index-1]
+                        let c2 = coordArr[index+1]
                         var a = [c1, c2]
                         var polyline = MKPolyline(coordinates: &a, count: a.count)
                         mapView.addOverlay(polyline)
                     }
-                }
             }
             
         }
+        
+        zoomMap(coordArr)
+        addPins()
     }
     
     func zoomMap(arr: [CLLocationCoordinate2D]) {
@@ -184,11 +185,23 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
             }
         }
         
-        mapView.setVisibleMapRect(loadRect, edgePadding: UIEdgeInsetsMake(10, 10, 10, 10), animated: true)
+        mapView.setVisibleMapRect(loadRect, edgePadding: UIEdgeInsetsMake(20, 20, 20, 20), animated: true)
     }
     
     func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
-        // this is where visible maprect should be set
         zoomMap(coordArr)
+    }
+    
+    func addPins() {
+        var startPin = MKPointAnnotation()
+        startPin.coordinate = coordArr[0]
+        startPin.title = "Start"
+        
+        var finishPin = MKPointAnnotation()
+        finishPin.coordinate = coordArr[coordArr.endIndex-1]
+        finishPin.title = "Finish"
+        
+        mapView.addAnnotation(startPin)
+        mapView.addAnnotation(finishPin)
     }
 }
