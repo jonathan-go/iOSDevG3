@@ -69,7 +69,7 @@ class RunHelper {
         return runs
     }
     
-    class func GetCompletedRunsBetweenDates(startDate: NSDate, endDate: NSDate) -> [Run] {
+    class func GetCompletedRunsBetweenDates(firstDate: NSDate, secondDate: NSDate) -> [Run] {
         
         var runs = [Run]()
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -77,12 +77,11 @@ class RunHelper {
         let fetchRequest = NSFetchRequest(entityName: "Run")
         var error: NSError?
         
-        let firstConditionPredicate = NSPredicate(format: "startDate >= %i", startDate)
-        let secondConditionPredicate = NSPredicate(format: "startDate <= %i", endDate)
+        let firstConditionPredicate = NSPredicate(format: "startDate >= %@", firstDate)
+        let secondConditionPredicate = NSPredicate(format: "startDate <= %@", secondDate)
+        let thirdConditionPredicate = NSPredicate(format: "status = %i" , RunHelper.Status.Completed.rawValue )
         
-        let predicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType , subpredicates: [firstConditionPredicate!,secondConditionPredicate!])
-
-        fetchRequest.predicate = predicate
+        fetchRequest.predicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType , subpredicates: [firstConditionPredicate!,secondConditionPredicate!,thirdConditionPredicate!])
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: true)]
         let fetchedResult = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?

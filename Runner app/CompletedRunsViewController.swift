@@ -31,7 +31,6 @@ class CompletedRunsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSelectedDate()
-        updateTable()
         // Do any additional setup after loading the view, typically from a nib.
         
     }
@@ -53,7 +52,7 @@ class CompletedRunsViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        updateTable()
+        updateSelectedDate()
         self.tableView.reloadData()
     }
     
@@ -89,11 +88,6 @@ class CompletedRunsViewController: UITableViewController {
         return cell
     }
     
-    func updateTable(){
-        runs.removeAll(keepCapacity: false)
-        runs = RunHelper.GetCompletedRuns()
-    }
-    
     //Handles the dateSelection
     func updateSelectedDate() {
         
@@ -119,13 +113,14 @@ class CompletedRunsViewController: UITableViewController {
 
         let endOfMonthDate = calendar.dateFromComponents(dateCompEnd)
         let startOfMonthDate = calendar.dateFromComponents(dateCompStart)
-
-        //TODO Test Dates with a DateFormatter
+        
         lbl_searchDate.text = stringDate
         
-        //var testruns = RunHelper.GetCompletedRunsBetweenDates(startOfMonthDate!, endDate: endOfMonthDate!)
+        runs.removeAll(keepCapacity: false)
+        runs = RunHelper.GetCompletedRunsBetweenDates(startOfMonthDate!, secondDate: endOfMonthDate!)
         
-        //updateTable()
+        self.tableView.reloadData()
+        
     }
 }
 
