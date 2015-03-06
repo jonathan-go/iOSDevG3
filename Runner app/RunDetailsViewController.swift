@@ -166,6 +166,8 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
             }
             
         }
+        
+        zoomMap(coordArr)
     }
     
     func zoomMap(arr: [CLLocationCoordinate2D]) {
@@ -188,7 +190,6 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
-        // this is where visible maprect should be set
         zoomMap(coordArr)
     }
 }
