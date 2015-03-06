@@ -141,10 +141,9 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
                 coordArr.append(coord)
             }
             
-            for index in 0...coordArr.count-1 {
+            for index in 0...coordArr.count-2 {
                 var paused = false
                 
-                if(index > 0){
                     let c1 = coordArr[index]
                     
                     paused = false
@@ -157,12 +156,11 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
                     
                     if (!paused)
                     {
-                        let c2 = coordArr[index-1]
+                        let c2 = coordArr[index+1]
                         var a = [c1, c2]
                         var polyline = MKPolyline(coordinates: &a, count: a.count)
                         mapView.addOverlay(polyline)
                     }
-                }
             }
             
         }
