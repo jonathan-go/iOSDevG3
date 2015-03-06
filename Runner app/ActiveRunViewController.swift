@@ -187,11 +187,19 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         
     }
     
-    
+    /////////
+    //  Starts the tracking and disables the back button to prevent the user from stopping the tracking.
+    //  - Elias Nilsson
+    /////////
     func startMap() {
         manager.startUpdatingLocation()
         btnBack.enabled = false
     }
+    
+    /////////
+    //  Stops the tracking and appends the last location to a seperate array to keep track of the "pause locations".
+    //  - Elias Nilsson
+    /////////
     func pauseMap(){
         manager.stopUpdatingLocation()
         paused = true
