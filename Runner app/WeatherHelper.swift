@@ -19,6 +19,9 @@ protocol UpdateWeatherIconsDelegate{
 
 class WeatherHelper {
     
+    // fetches the image from images and return it
+    // - Emil Lygnebrandt
+    //
     class func getWeatherImage(imagecode: String) -> UIImage {
         
         var image = UIImage(named: imagecode + ".png")
@@ -28,6 +31,9 @@ class WeatherHelper {
         return image!
     }
     
+    //Gets weather information from api and returns icon code for he requested date
+    // - Emil Lygnebrandt
+    //
     class func getImagecodeFromApi(requestedDate: NSDate, longitude: String, latitude: String, delegate: WeatherHelperDelegate) {
         let todaysDate = NSDate()
         let daysBetween = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: todaysDate, toDate: requestedDate, options: NSCalendarOptions(0))
@@ -84,6 +90,9 @@ class WeatherHelper {
         }
     }
     
+    // Get weather icons for evry avaiable day and return an array with them
+    // - Emil Lygnebrandt
+    //
     class func updateWeatherIcons(longitude: String, latitude: String, delegate: UpdateWeatherIconsDelegate) {
     
         let todaysDate = NSDate()

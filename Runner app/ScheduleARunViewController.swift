@@ -47,6 +47,9 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, 
         
     }
     
+    // starts to update location
+    // - Emil Lygnebrandt
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -143,6 +146,9 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, 
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    // update location and assing to varaiables and the call getImageCodeFromApi
+    // - Emil Lygnebrandt
+    //
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         locationManager.stopUpdatingLocation()
         longitude = locationManager.location.coordinate.longitude.description

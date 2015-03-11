@@ -21,6 +21,10 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     var foundLocation: Bool = false
     //var unsortedRuns = [Run]()
 
+
+    // Starts to update the weather and updates the table
+    // - Emil Lygnebrandt
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -37,6 +41,9 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         // Dispose of any resources that can be recreated.
     }
     
+    // Sends delegate to menuviewcontroller to be sent to scheduleArun
+    // - Emil Lygnebrandt
+    //
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addMenuSegue" {
             let menuViewController = segue.destinationViewController as MenuViewController
@@ -77,6 +84,8 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     }
     
     // Assign data to the table cells
+    // - Emil Lygnebrandt
+    //
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("runCell") as UITableViewCell
         
@@ -104,18 +113,26 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     }
     
     
-    
+    // calls updatetable and reloadData
+    // - Emil Lygnebrandt
+    //
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updateTable()
          self.tableView.reloadData()
     }
     
+    // Delegate function
+    // - Emil Lygnebrandt
+    //
     func updateScheduleRunsTable() {
         updateTable()
         self.tableView.reloadData()
     }
-    
+
+    // updates the atbleview and rearange runs in order of the date
+    // - Emil Lygnebrandt
+    //
     func updateTable(){
         runs.removeAll(keepCapacity: false)
         //unsortedRuns.removeAll(keepCapacity: false)
@@ -152,6 +169,9 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         }
     }
     
+    // Assign data to location variables and calls updateweatherfunc
+    // - Emil Lygnebrandt
+    //
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         locationManager.stopUpdatingLocation()
         longitude = locationManager.location.coordinate.longitude.description
@@ -162,6 +182,9 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         }
     }
     
+    // updates the weather images of scheduledruns
+    // - Emil Lygnebrandt
+    //
     func updateWeatherIcons(iconArray: [String]) {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
@@ -182,6 +205,9 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         updateTable()
     }
     
+    // Calls the weatherhelper to begin update weather icons
+    // - Emil Lygnebrandt
+    //
     func updateWeatherFunc()  {
         if updateWeather {
             WeatherHelper.updateWeatherIcons(longitude, latitude: latitude, delegate: self)

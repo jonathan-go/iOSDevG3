@@ -57,6 +57,9 @@ class CompletedRunsViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    //  assing data to the cells
+    // - Emil Lygnebrandt
+    //
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("CompletedRunCell") as UITableViewCell
         
@@ -70,6 +73,7 @@ class CompletedRunsViewController: UITableViewController {
             let stringDate: String = formatter.stringFromDate(run.startDate)
             datelbl.text = stringDate
         }
+        // Jonathan fixed
         if let distancelbl = cell.viewWithTag(102) as? UILabel{
             if run.distance.intValue < 1000 {
                 distancelbl.text = "\(run.distance.intValue)m"
