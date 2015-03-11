@@ -21,6 +21,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @IBOutlet weak var btnBack: UIBarButtonItem!
     
     var runToShow: Run?
+    var runStartDate: NSDate?
     
     var manager:CLLocationManager!
     var myLocations: [CLLocation] = []
@@ -326,9 +327,24 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     func saveRun() {        
         
-        var error: NSError?
-        if !runToShow!.managedObjectContext!.save(&error) {
-            println("Could not save \(error)")
+        //Creates a Copy of the current run and saves it to CoreData, whilst changing some values
+        if (runToShow?.status == RunHelper.Status.Completed.rawValue)
+        {
+            var copyRun = runToShow
+            copyRun?.startDate = runStartDate!
+            copyRun?.repeatingStatus = RunHelper.RepeatingStatus.None.rawValue
+            
+            var error: NSError?
+            if !copyRun!.managedObjectContext!.save(&error) {
+                println("Could not save \(error)")
+            }
+            
+        }
+        else{
+            var error: NSError?
+            if !runToShow!.managedObjectContext!.save(&error) {
+                println("Could not save \(error)")
+            }
         }
     }
     
@@ -353,6 +369,12 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     func startTimer() {
+        
+        //Sets the date when the run started, Assuming that lastResumeDate is nil when a run is about to start
+        if( runToShow?.lastResumeDate == nil)
+        {
+            runStartDate = NSDate()
+        }
         
         btnStartPause.setTitle("Pause", forState: .Normal)
         running = true
