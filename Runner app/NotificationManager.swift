@@ -10,8 +10,14 @@ import Foundation
 import UIKit
 import CoreData
 
+// Class for handling notifications
 class NotificationManager {
     
+    // The application handles the notifications when the app is closed or moved
+    // to the background. This way the app will only schedule a notification of
+    // the most relevant run and the phones queue will be managed correctly.
+    // (Otherwise the phones queue will be full and scheduled notifications would
+    // be removed).
     class func onApplicationExit() {
         // Delete pending notifications and create one for pending run.
         
@@ -19,8 +25,10 @@ class NotificationManager {
         let appDelegate = appReference.delegate as AppDelegate
         let managedObjectContext = appDelegate.managedObjectContext
         
+        // Deleting the scheduled notifications
         appReference.cancelAllLocalNotifications()
         
+        // Fetching the correct run to schedule notification for
         let fetchRequest = NSFetchRequest(entityName: "Run")
         let currentDate = NSDate()
         
@@ -36,9 +44,10 @@ class NotificationManager {
             
             if runs.count > 0 {
                 let notRun = runs[0]
-                
+                // Create notification
                 var notification = UILocalNotification()
                 
+                // Calculate datetime
                 var offsetComponents = NSDateComponents()
                 offsetComponents.minute = -15
                 let minutesToStartDate = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMinute, fromDate: currentDate, toDate: notRun.startDate, options: NSCalendarOptions(0))
@@ -55,10 +64,5 @@ class NotificationManager {
                 appReference.scheduleLocalNotification(notification)
             }
         }
-    }
-    
-    class func onApplicationStartFromNotification(inout window: UIWindow) {
-        // Get the correct run and start active run delen
-        // TODO: Complete this function and change fireDate to normal before launch
     }
 }

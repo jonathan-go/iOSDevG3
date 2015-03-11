@@ -50,6 +50,21 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         return runs.count
     }
     
+    
+    // Removes the run from the table and removes it from Core Data
+    // - Elias Nilsson
+    //
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let managedContext = appDelegate.managedObjectContext!
+            managedContext.deleteObject(runs[indexPath.row] as NSManagedObject)
+            runs.removeAtIndex(indexPath.row)
+            managedContext.save(nil)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedRun = runs[indexPath.row]
         /*let destinationVC = ActiveRunViewController()

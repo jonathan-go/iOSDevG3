@@ -50,8 +50,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="01d" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-yM-ifO">
-                                            <rect key="frame" x="549" y="9" width="43" height="43"/>
+                                        <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01d" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-yM-ifO">
+                                            <rect key="frame" x="549" y="8" width="43" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="62" id="nlm-TI-TxQ"/>
                                                 <constraint firstAttribute="width" secondItem="M1X-yM-ifO" secondAttribute="height" multiplier="1:1" id="vvQ-8U-GWr"/>
@@ -236,8 +236,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="10d" translatesAutoresizingMaskIntoConstraints="NO" id="V4C-SV-Zlv">
-                                            <rect key="frame" x="549" y="9" width="43" height="43"/>
+                                        <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="10d" translatesAutoresizingMaskIntoConstraints="NO" id="V4C-SV-Zlv">
+                                            <rect key="frame" x="549" y="8" width="43" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="8Wg-ID-v2Y"/>
                                                 <constraint firstAttribute="width" secondItem="V4C-SV-Zlv" secondAttribute="height" multiplier="1:1" id="dkJ-Sg-j63"/>
@@ -426,9 +426,13 @@
                                     <constraint firstAttribute="centerX" secondItem="PvT-J4-c7V" secondAttribute="centerX" id="DGW-o5-JiC"/>
                                     <constraint firstItem="8Dg-6l-aeW" firstAttribute="centerX" secondItem="QnE-dW-hpj" secondAttribute="centerX" constant="-50" id="P4j-Pg-pZj"/>
                                     <constraint firstAttribute="centerX" secondItem="eI9-xL-lwa" secondAttribute="centerX" constant="-50" id="Rwa-pt-Nlo"/>
-                                    <constraint firstItem="8Dg-6l-aeW" firstAttribute="top" secondItem="PvT-J4-c7V" secondAttribute="bottom" constant="15" id="StI-E0-y8o"/>
+                                    <constraint firstItem="8Dg-6l-aeW" firstAttribute="top" secondItem="PvT-J4-c7V" secondAttribute="bottom" constant="15" id="StI-E0-y8o">
+                                        <variation key="widthClass=compact" constant="5"/>
+                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="PvT-J4-c7V" secondAttribute="trailing" id="TgS-TO-yYE"/>
-                                    <constraint firstItem="7X3-vk-E4W" firstAttribute="top" secondItem="QnE-dW-hpj" secondAttribute="top" constant="20" id="U34-cT-Gal"/>
+                                    <constraint firstItem="7X3-vk-E4W" firstAttribute="top" secondItem="QnE-dW-hpj" secondAttribute="top" constant="20" id="U34-cT-Gal">
+                                        <variation key="widthClass=compact" constant="5"/>
+                                    </constraint>
                                     <constraint firstItem="xqJ-hU-a7S" firstAttribute="top" secondItem="7X3-vk-E4W" secondAttribute="bottom" id="V56-Jb-ycm"/>
                                     <constraint firstAttribute="centerX" secondItem="7X3-vk-E4W" secondAttribute="centerX" id="W0M-BK-dj6"/>
                                     <constraint firstAttribute="centerX" secondItem="xqJ-hU-a7S" secondAttribute="centerX" id="atN-xc-oO4"/>
@@ -525,8 +529,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zrb-dd-nEG">
-                                <rect key="frame" x="89" y="60" width="493" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zrb-dd-nEG">
+                                <rect key="frame" x="89" y="59" width="495" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="213" id="aLF-Jw-o2l"/>
                                 </constraints>
@@ -628,8 +632,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eAQ-Kk-PqY">
-                                <rect key="frame" x="221" y="392" width="50" height="50"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eAQ-Kk-PqY">
+                                <rect key="frame" x="216" y="392" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Cda-qu-7zD"/>
                                     <constraint firstAttribute="width" constant="50" id="RQl-Fm-QMH"/>
@@ -1010,36 +1014,60 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="20" y="89" width="49" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="von-X8-0vc">
                                 <rect key="frame" x="538" y="89" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="340" y="89" width="40" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLz-nE-f4u">
                                 <rect key="frame" x="20" y="115" width="41" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="20" y="115" width="40" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-oh-gU4">
                                 <rect key="frame" x="538" y="115" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="340" y="115" width="40" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Distance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yp1-od-flX">
                                 <rect key="frame" x="20" y="141" width="72" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="20" y="141" width="69" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49Y-Fr-FQ5">
                                 <rect key="frame" x="538" y="141" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="340" y="141" width="40" height="21"/>
+                                </variation>
                             </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XC5-FD-uFG">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
@@ -1053,57 +1081,88 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVb-sg-UO3">
-                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVb-sg-UO3">
+                                <rect key="frame" x="0.0" y="327" width="600" height="273"/>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I1i-hs-lOU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1i-hs-lOU">
                                 <rect key="frame" x="530" y="240" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="c3L-45-PdT"/>
                                     <constraint firstAttribute="height" constant="50" id="haY-Ut-YSm"/>
                                 </constraints>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="330" y="240" width="50" height="50"/>
+                                </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIs-Um-h2X">
                                 <rect key="frame" x="20" y="167" width="43" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="20" y="167" width="41" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rqb-fQ-Rxh">
                                 <rect key="frame" x="538" y="167" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="340" y="167" width="40" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Average speed:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xj-fA-DTz">
                                 <rect key="frame" x="20" y="193" width="120" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="20" y="193" width="115" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFT-cm-Gf4">
                                 <rect key="frame" x="538" y="193" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="340" y="193" width="40" height="21"/>
+                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The weather was:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEg-SU-uRI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="The weather was:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEg-SU-uRI">
                                 <rect key="frame" x="20" y="254" width="135" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="20" y="254" width="130" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pace:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-uQ-ckG">
                                 <rect key="frame" x="20" y="219" width="44" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="20" y="219" width="42" height="21"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyj-YV-Ca1">
                                 <rect key="frame" x="538" y="219" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <rect key="frame" x="340" y="219" width="40" height="21"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1118,7 +1177,7 @@
                             <constraint firstAttribute="centerX" secondItem="JFT-cm-Gf4" secondAttribute="trailing" constant="10" id="Bgt-tV-Gvi"/>
                             <constraint firstAttribute="centerX" secondItem="49Y-Fr-FQ5" secondAttribute="trailing" constant="10" id="Eb0-tz-PvZ"/>
                             <constraint firstItem="ffv-uQ-ckG" firstAttribute="leading" secondItem="7xj-fA-DTz" secondAttribute="leading" id="GNg-0d-6an"/>
-                            <constraint firstItem="ffv-uQ-ckG" firstAttribute="centerY" secondItem="eyj-YV-Ca1" secondAttribute="centerY" constant="2" id="HSO-JW-xJb"/>
+                            <constraint firstItem="ffv-uQ-ckG" firstAttribute="centerY" secondItem="eyj-YV-Ca1" secondAttribute="centerY" id="HSO-JW-xJb"/>
                             <constraint firstItem="XC5-FD-uFG" firstAttribute="leading" secondItem="nnq-3f-Sdu" secondAttribute="leading" id="INx-ao-GXI"/>
                             <constraint firstItem="JFT-cm-Gf4" firstAttribute="centerY" secondItem="7xj-fA-DTz" secondAttribute="centerY" id="IoZ-1D-be4"/>
                             <constraint firstAttribute="centerY" secondItem="JVb-sg-UO3" secondAttribute="top" id="K3x-iS-IKv"/>
@@ -1128,12 +1187,16 @@
                             <constraint firstItem="I1i-hs-lOU" firstAttribute="centerY" secondItem="dEg-SU-uRI" secondAttribute="centerY" id="NbK-hk-Ahm"/>
                             <constraint firstItem="eIs-Um-h2X" firstAttribute="leading" secondItem="Yp1-od-flX" secondAttribute="leading" id="NlV-kM-ZmU"/>
                             <constraint firstItem="Yp1-od-flX" firstAttribute="leading" secondItem="9Ap-vc-LbE" secondAttribute="leading" id="Oba-Tw-oud"/>
-                            <constraint firstItem="9Ap-vc-LbE" firstAttribute="top" secondItem="XC5-FD-uFG" secondAttribute="bottom" constant="25" id="P9E-on-Fam"/>
+                            <constraint firstItem="9Ap-vc-LbE" firstAttribute="top" secondItem="XC5-FD-uFG" secondAttribute="bottom" constant="25" id="P9E-on-Fam">
+                                <variation key="widthClass=compact" constant="15"/>
+                            </constraint>
                             <constraint firstItem="ffv-uQ-ckG" firstAttribute="top" secondItem="7xj-fA-DTz" secondAttribute="bottom" constant="5" id="PHs-q0-Nph"/>
                             <constraint firstAttribute="trailing" secondItem="von-X8-0vc" secondAttribute="trailing" constant="20" id="PcC-dy-oj8"/>
-                            <constraint firstItem="JVb-sg-UO3" firstAttribute="top" secondItem="I1i-hs-lOU" secondAttribute="bottom" constant="10" id="UZ2-5q-txA"/>
                             <constraint firstAttribute="centerX" secondItem="JVb-sg-UO3" secondAttribute="leading" constant="-10" id="X1Q-ae-18k"/>
                             <constraint firstItem="Yp1-od-flX" firstAttribute="top" secondItem="VLz-nE-f4u" secondAttribute="bottom" constant="5" id="XxZ-IW-aYB"/>
+                            <constraint firstItem="dEg-SU-uRI" firstAttribute="top" secondItem="ffv-uQ-ckG" secondAttribute="bottom" constant="14" id="ZB2-dn-JWa">
+                                <variation key="widthClass=compact" constant="5"/>
+                            </constraint>
                             <constraint firstItem="dEg-SU-uRI" firstAttribute="leading" secondItem="nnq-3f-Sdu" secondAttribute="leading" constant="20" id="bKg-Ns-zwM"/>
                             <constraint firstAttribute="trailing" secondItem="f6x-oh-gU4" secondAttribute="trailing" constant="20" id="caN-ux-CUg"/>
                             <constraint firstAttribute="centerX" secondItem="f6x-oh-gU4" secondAttribute="trailing" constant="10" id="cq4-gZ-Rhx"/>
@@ -1157,6 +1220,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="i2o-vr-pEA"/>
+                                <exclude reference="ZB2-dn-JWa"/>
                                 <exclude reference="X1Q-ae-18k"/>
                                 <exclude reference="d90-Qs-21b"/>
                                 <exclude reference="pus-Wi-la2"/>
@@ -1173,7 +1237,6 @@
                                 <include reference="i2o-vr-pEA"/>
                                 <exclude reference="bKg-Ns-zwM"/>
                                 <exclude reference="K3x-iS-IKv"/>
-                                <exclude reference="UZ2-5q-txA"/>
                                 <include reference="X1Q-ae-18k"/>
                                 <include reference="d90-Qs-21b"/>
                                 <exclude reference="r03-7W-HXi"/>
@@ -1192,6 +1255,11 @@
                                 <include reference="q3m-xx-5Yh"/>
                             </mask>
                         </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="ZB2-dn-JWa"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <connections>
@@ -1207,7 +1275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHM-6j-wuC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="447" y="1105.5"/>
+            <point key="canvasLocation" x="447" y="1105"/>
         </scene>
     </scenes>
     <resources>

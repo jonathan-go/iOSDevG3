@@ -35,11 +35,15 @@ class MenuViewController: UIViewController, ScheduleRunsViewControllerDelegate {
             let stringLength = countElements(timeAsString)
             let substringIndex = 10 //Ensures that Year, Month and day will be shown
             
+            //Fills the run object with data
+            
+            //Creates the name for the run object
             run.name = "Quickstart " + timeAsString.substringToIndex(advance(timeAsString.startIndex, substringIndex))
             run.startDate = NSDate()
             run.status = RunHelper.Status.Scheduled.rawValue
             run.repeatingStatus = RunHelper.RepeatingStatus.None.rawValue
             
+            //Saves run to CoreData
             var error: NSError?
             if !managedContext.save(&error) {
                 println("Could not save/schedule run")

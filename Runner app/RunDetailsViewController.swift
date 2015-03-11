@@ -30,7 +30,10 @@ class RunDetailsViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         mapView.showsUserLocation = false
         
-        // Insert values in all the labels
+        // Insert values in all the labels with correct formatting,
+        // most of the code is to check for values and to make sure
+        // the output is formatted.
+        
         lblName.text = runToShow?.name
         
         var distanceInMeters = 0
