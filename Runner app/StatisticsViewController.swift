@@ -20,7 +20,6 @@ class StatisticsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gatherStatistics()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -33,10 +32,12 @@ class StatisticsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Function for gathering statistics and at the same time update the UI with
+    // the new values.
     private func gatherStatistics() {
         
-        var runs: [Run] = RunHelper.GetCompletedRuns()
         // Gather the statistics from the runs
+        var runs: [Run] = RunHelper.GetCompletedRuns()
         var tDistance: Int = 0
         var avgSpeed: Float = 0.0
         var tTime: Int = 0
@@ -52,6 +53,7 @@ class StatisticsViewController: UIViewController {
             let dTime = Float(item.savedTime.intValue / 60) // saved in minutes
             avgSpeed += dDistance/item.savedTime.floatValue
             
+            // This is for getting statistics about time per week.
             let calendar = NSCalendar.currentCalendar()
             let year = calendar.component(NSCalendarUnit.CalendarUnitYear, fromDate: item.startDate)
             let week = calendar.component(NSCalendarUnit.CalendarUnitWeekOfYear, fromDate: item.startDate)
@@ -65,6 +67,7 @@ class StatisticsViewController: UIViewController {
             tTime += Int(dTime)
         }
         
+        // Update the UI and format the statistics correctly
         if tDistance > 1000 {
             lblTDistance.text = String(format: "%.2f", Float(tDistance)/1000.0) + "km"
         } else {

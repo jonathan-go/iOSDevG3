@@ -10,16 +10,22 @@ import Foundation
 import UIKit
 import CoreData
 
+// Class for functions connected to Run.
 class RunHelper {
     
+    // Enum for the status of a run. This way it is consistent everywhere and cleaner
+    // then just relying on hardcoded integers.
     enum Status: Int {
         case Scheduled = 0, Started, Completed, Running
     }
     
+    // Enum for the repeating status of a run.
     enum RepeatingStatus: Int {
         case None = 0, Daily, Weekly, Monthly
     }
     
+    // Creates a new run to make an existing run seem to repeat. This function is only called
+    // when the user has specified that the run will repeat and when that run is completed.
     class func CreateRescheduling(completedRun: Run) {
         
         // Create schedule run if the incoming run has RepeatingStatus != None.
@@ -51,6 +57,7 @@ class RunHelper {
         }
     }
     
+    // Fetches all completed runs from core data.
     class func GetCompletedRuns() -> [Run] {
         
         var runs = [Run]()
@@ -59,6 +66,7 @@ class RunHelper {
         let fetchRequest = NSFetchRequest(entityName: "Run")
         var error: NSError?
         
+        // Filter the fetch by only taking those with status == completed
         fetchRequest.predicate = NSPredicate(format: "status = %i" , RunHelper.Status.Completed.rawValue )
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: true)]
         let fetchedResult = managedContext.executeFetchRequest(fetchRequest, error: &error) as [Run]?
