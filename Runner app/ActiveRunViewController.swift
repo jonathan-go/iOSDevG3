@@ -50,6 +50,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         super.viewDidLoad()
         // Do any additional setup after loading the view
         
+        btnStop.enabled = false
+        
         manager = CLLocationManager()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -311,6 +313,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @IBAction func startPauseBtnClick(sender: UIButton) {
         
         if (!running) {
+            btnStop.enabled = true
             startTimer()
             startMap()
         } else {
