@@ -69,6 +69,9 @@ class RunHelper {
         return runs
     }
     
+    
+    //returns the runs between two dates
+    //Alexander Lagerqvist
     class func GetCompletedRunsBetweenDates(firstDate: NSDate, secondDate: NSDate) -> [Run] {
         
         var runs = [Run]()

@@ -97,6 +97,7 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, 
     }
     
     //Saves the schedule to CoreData
+    //Alexander Lagerqvist
     func saveScheduledRunToCoreData(runName: String, runDate: NSDate, runRepeatMode: Int){
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -104,6 +105,7 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, 
         let entity = NSEntityDescription.entityForName("Run", inManagedObjectContext: managedContext)
         let run = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as Run
 
+        //Translates the repeating status from the UI to the RunHelper class
         if(runRepeatMode == 0){
             run.repeatingStatus = RunHelper.RepeatingStatus.None.rawValue
         }
@@ -119,12 +121,13 @@ class ScheduleARunViewController: UIViewController , CLLocationManagerDelegate, 
         else {
             assert(false, "repeating status code is invalid. Terminating in 3...2...1")
         }
-        
+        //Fills the run object with data
         run.name = runName
         run.startDate = runDate
         run.status = RunHelper.Status.Scheduled.rawValue
         run.weather = imageCode
         
+        //Saves the run to CoreData
         var error: NSError?
         if !managedContext.save(&error) {
             println("Could not save/schedule run")

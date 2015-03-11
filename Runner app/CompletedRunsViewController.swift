@@ -90,9 +90,10 @@ class CompletedRunsViewController: UITableViewController {
     }
     
     //Handles the dateSelection
+    //Alexander Lagerqvist
     func updateSelectedDate() {
         
-        //Creates a String with desired format
+        //Creates a string that shows month and year for the selectedDate
         let date = NSDate()
         let dateComp = NSDateComponents()
         dateComp.month = currIncDecVal
@@ -103,7 +104,10 @@ class CompletedRunsViewController: UITableViewController {
         formatter.dateFormat = ("MMMM yyyy")
         let stringDate: String = formatter.stringFromDate(selectedDate!)
         
-        //Sets the start and the end of the month, these will be used to catch the runs done during the month
+        //Change the date label to the current date using year-month format
+        lbl_searchDate.text = stringDate
+        
+        //Sets the end of the month by using NSDateComponents, By setting zero'th day of the next month gives you the last day of the selected month
         let dateCompEnd = calendar.components( NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit, fromDate: selectedDate!)
         dateCompEnd.month += 1
         dateCompEnd.day = 0
@@ -111,20 +115,24 @@ class CompletedRunsViewController: UITableViewController {
         dateCompEnd.minute = 59
         dateCompEnd.second = 59
         
+        //Sets the start of the month using NSDateComponents
         let dateCompStart = calendar.components( NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: selectedDate!)
         dateCompStart.day = 1
         dateCompStart.hour = 0
         dateCompStart.minute = 0
         dateCompStart.second = 0
-
+        
+        //Turns the date components into NSDates
         let endOfMonthDate = calendar.dateFromComponents(dateCompEnd)
         let startOfMonthDate = calendar.dateFromComponents(dateCompStart)
         
-        lbl_searchDate.text = stringDate
-        
+        //Removes everything inside the array to prevent duplicates
         runs.removeAll(keepCapacity: false)
+        
+        //Gets the completed runs between the two dates
         runs = RunHelper.GetCompletedRunsBetweenDates(startOfMonthDate!, secondDate: endOfMonthDate!)
         
+        //Refreshes the table to show the new data
         self.tableView.reloadData()
         
     }
