@@ -21,6 +21,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @IBOutlet weak var btnBack: UIBarButtonItem!
     
     var runToShow: Run?
+    var runStartDate: NSDate?
     
     var manager:CLLocationManager!
     var myLocations: [CLLocation] = []
@@ -39,6 +40,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view
+        
+        btnStop.enabled = false
         
         manager = CLLocationManager()
         manager.delegate = self
@@ -293,6 +296,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     @IBAction func startPauseBtnClick(sender: UIButton) {
         
         if (!running) {
+            btnStop.enabled = true
             startTimer()
             startMap()
         } else {
@@ -309,9 +313,24 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     func saveRun() {        
         
-        var error: NSError?
-        if !runToShow!.managedObjectContext!.save(&error) {
-            println("Could not save \(error)")
+        //Creates a Copy of the current run and saves it to CoreData, whilst changing some values
+        if (runToShow?.status == RunHelper.Status.Completed.rawValue)
+        {
+            var copyRun = runToShow
+            copyRun?.startDate = runStartDate!
+            copyRun?.repeatingStatus = RunHelper.RepeatingStatus.None.rawValue
+            
+            var error: NSError?
+            if !copyRun!.managedObjectContext!.save(&error) {
+                println("Could not save \(error)")
+            }
+            
+        }
+        else{
+            var error: NSError?
+            if !runToShow!.managedObjectContext!.save(&error) {
+                println("Could not save \(error)")
+            }
         }
     }
     
@@ -338,6 +357,12 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     // Starts the timer and store the apropriate values to make sure
     // the run keep the correct time.
     func startTimer() {
+        
+        //Sets the date when the run started, Assuming that lastResumeDate is nil when a run is about to start
+        if( runToShow?.lastResumeDate == nil)
+        {
+            runStartDate = NSDate()
+        }
         
         btnStartPause.setTitle("Pause", forState: .Normal)
         running = true
