@@ -17,7 +17,8 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     var latitude = ""
     var date = NSDate()
     var newIconsArray: [String] = [String]()
-    var updateWeather: Bool = false;
+    var updateWeather: Bool = false
+    var foundLocation: Bool = false
     //var unsortedRuns = [Run]()
 
     override func viewDidLoad() {
@@ -75,7 +76,9 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
             datelbl.text = stringDate
         }
         if let weatherBox = cell.viewWithTag(102) as? UIImageView{
-        
+            if let iconForWeather = run.weather {
+                weatherBox.image = WeatherHelper.getWeatherImage(run.weather!)
+            }
         }
         
         return cell
@@ -130,15 +133,18 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
                     }
                 }
             }
+            updateWeatherFunc()
         }
-        //updateWeatherFunc()
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         locationManager.stopUpdatingLocation()
         longitude = locationManager.location.coordinate.longitude.description
         latitude = locationManager.location.coordinate.latitude.description
-        //updateWeatherFunc()
+        if longitude != "" && latitude != "" && !foundLocation {
+            updateWeatherFunc()
+            foundLocation = true
+        }
     }
     
     func updateWeatherIcons(iconArray: [String]) {
@@ -146,14 +152,14 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
         let managedContext = appDelegate.managedObjectContext!
         var error: NSError?
         
-        println(runs.count)
+        //println(iconArray)
         for var i = 0; i < runs.count; i++ {
-            println(runs)
             let daysBetween = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: date, toDate: runs[i].startDate, options: NSCalendarOptions(0))
             if daysBetween.day < 16 && daysBetween.day > 0 {
-                runs[i].weather = "10d"
+                println(daysBetween.day)
+                runs[i].weather = iconArray[daysBetween.day]
+                println(iconArray[daysBetween.day])
             }
-            println(runs)
         }
         if !managedContext.save(&error) {
             println("Could not save/schedule run")
@@ -162,11 +168,13 @@ class ScheduleRunsViewController: UITableViewController, UIPopoverPresentationCo
     }
     
     func updateWeatherFunc()  {
-//        if updateWeather {
-//            WeatherHelper.updateWeatherIcons(longitude, latitude: latitude, delegate: self)
-//        }
-//        
+        if updateWeather {
+            WeatherHelper.updateWeatherIcons(longitude, latitude: latitude, delegate: self)
+            updateWeather = false
+        }
+        else {
+            updateWeather = true
+        }
     }
-
 }
 

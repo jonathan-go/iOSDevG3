@@ -32,8 +32,12 @@ class WeatherHelper {
         let todaysDate = NSDate()
         let daysBetween = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: todaysDate, toDate: requestedDate, options: NSCalendarOptions(0))
 
+        println(daysBetween.day)
         if daysBetween.day == 0 {
             daysBetween.day = 1
+        }
+        else {
+            daysBetween.day = daysBetween.day + 1
         }
         if daysBetween.day < 16 && daysBetween.day > 0
         {
@@ -55,21 +59,20 @@ class WeatherHelper {
                 if let weatherArr = weatherInfo.objectAtIndex(weatherInfo.count - 1) as? NSArray {
                     if let dict = weatherArr.objectAtIndex(weatherArr.count - 1) as? NSDictionary {
                         var imageCodeFromJson = dict.valueForKey("icon") as String
-                        println(imageCodeFromJson)
+                        //println(imageCodeFromJson)
                         let findString = (imageCodeFromJson as NSString).containsString("n")
                         
                         if findString {
                             imageCodeFromJson = dropLast(imageCodeFromJson)
                             imageCodeFromJson = imageCodeFromJson + "d"
                         }
-                        println(imageCodeFromJson)
+                        //println(imageCodeFromJson)
                         dispatch_async(dispatch_get_main_queue()) { () -> Void in
                             delegate.updateWeatherImage(imageCodeFromJson)
                         }
                     }
                 }
                 }
-                
                 if let error = error {
                     println("fel")
                 }
@@ -86,7 +89,7 @@ class WeatherHelper {
         let todaysDate = NSDate()
         
         let url: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(latitude)&lon=\(longitude)&cnt=16&mode=json")!
-        println(url)
+        //println(url)
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url, completionHandler: { data, response, error -> Void in
@@ -95,13 +98,10 @@ class WeatherHelper {
             let jsonData: NSData = data
             var iconArray: [String] = [String]()
             if let jsonDict = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorForJson) as? NSDictionary {
-                //println(jsonDict)
                 
                 var info: NSArray = jsonDict.valueForKey("list") as NSArray
                 //println(info)
                 var weatherInfo: NSArray = info.valueForKey("weather") as NSArray
-                //println(weatherInfo)
-                
                 
                 for var i = 0 ; i < weatherInfo.count ; i++ {
                     if let weatherArr = weatherInfo.objectAtIndex(i) as? NSArray {
@@ -113,17 +113,15 @@ class WeatherHelper {
                                 imageCodeFromJson = dropLast(imageCodeFromJson)
                                 imageCodeFromJson = imageCodeFromJson + "d"
                             }
-
                             iconArray.append(imageCodeFromJson)
                         }
                     }
                 }
             }
-            println(iconArray)
+            //println(iconArray)
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 delegate.updateWeatherIcons(iconArray)
             }
-            
         })
         task.resume()
 
