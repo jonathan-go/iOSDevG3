@@ -37,16 +37,6 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     private var running: Bool = false
     private var paused: Bool = false
     
-    lazy var managedObjectContext: NSManagedObjectContext? = {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        if let managedObjectContext = appDelegate.managedObjectContext {
-            return managedObjectContext
-        }
-        else {
-            return nil
-        }
-        }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view
@@ -63,7 +53,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         mapView.showsUserLocation = true
         
         
-        // Initialize time with values.
+        // Initialize time with values and start timer.
         startTime = NSDate.timeIntervalSinceReferenceDate()
         savedTime = savedTime + runToShow!.savedTime.doubleValue
         if runToShow?.status == RunHelper.Status.Running.rawValue {
@@ -82,15 +72,6 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func getDateFromString(date: String) -> NSDate {
-        
-        let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let d = dateStringFormatter.dateFromString(date)
-        return NSDate(timeInterval: 0, sinceDate: d!)
-    }
-    
     
     /////////
     //  Fires when location is updated and appends them to an array of locations. Creates a polyline of the travelled distance and adds it to the map.
@@ -289,7 +270,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         saveRun()
     }
     
-    
+    // Calculates the correct time, formats it and updates the UI.
     func updateTime() {
         
         var currentTime = NSDate.timeIntervalSinceReferenceDate()
@@ -311,6 +292,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
     }
     
+    // Start or Pause button is pressed.
     @IBAction func startPauseBtnClick(sender: UIButton) {
         
         if (!running) {
@@ -323,6 +305,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
     }
     
+    // Stop button is pressed.
     @IBAction func stopBtnClick(sender: UIButton) {
         stopTimer()
         stopMap()
@@ -352,7 +335,7 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     
-    
+    // Invaludates timer and store the saved time.
     func pauseTimer(save: Bool) {
         
         btnStartPause.setTitle("Start", forState: .Normal)
@@ -371,6 +354,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
     }
     
+    // Starts the timer and store the apropriate values to make sure
+    // the run keep the correct time.
     func startTimer() {
         
         //Sets the date when the run started, Assuming that lastResumeDate is nil when a run is about to start
@@ -392,6 +377,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
         saveRun()
     }
     
+    // Stop timer and set the run to completed. Stores the correct data
+    // in the run and reschedule if nessessary.
     func stopTimer() {
         
         if running {
@@ -406,7 +393,8 @@ class ActiveRunViewController: UIViewController, CLLocationManagerDelegate, MKMa
     }
     
     
-    
+    // Back button was pressed. Dismisses the viewcontroller and updates
+    // the table in the other view controller.
     @IBAction func backButtonClick(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
         if delegate != nil {
